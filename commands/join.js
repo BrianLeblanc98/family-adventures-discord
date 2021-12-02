@@ -17,7 +17,9 @@ module.exports = {
         }
         
         var jsonString = JSON.stringify(newUser);
-        await fs.writeFile(`./data/users/${interaction.user.id}.json`, jsonString);
+
+        // Probably want to async this at some point
+        fs.writeFileSync(`./data/users/${interaction.user.id}.json`, jsonString);
         console.log(`${interaction.user.id}.json created`);
 
 		await interaction.reply(`Welcome to the family <@${interaction.user.id}>! You\'ll need a car before you can get yourself some Coronas, which one do you wanna start with?`);
