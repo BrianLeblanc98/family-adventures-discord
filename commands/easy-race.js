@@ -28,10 +28,10 @@ module.exports = {
             let winnings = Math.floor(bet * 0.1);
             userJson.bal += winnings;
 
-            await interaction(`You won for the family! Congrats on your ${winnings} Corona win!`);
+            await interaction.reply(`You won for the family! Congrats on your ${winnings} Corona win!`);
         } else {
             userJson.bal -= bet;
-            await interaction(`You lost it for the family. You lose your ${bet} bet `);
+            await interaction.reply(`You lost it for the family. You lose your ${bet} bet `);
         }
 
         let jsonString = JSON.stringify(userJson);
