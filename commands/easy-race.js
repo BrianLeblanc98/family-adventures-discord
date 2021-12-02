@@ -38,7 +38,5 @@ module.exports = {
 
         // Probably want to async this at some point
         fs.writeFileSync(`./data/users/${interaction.user.id}.json`, jsonString);
-
-		await interaction.reply(`bet was ${bet}`);
 	},
 };
