@@ -10,7 +10,7 @@ module.exports = {
             await interaction.reply(`You're already part of the family <@${interaction.user.id}>!`);
             return;
         }
-        newUser = {
+        let newUser = {
             "id": interaction.user.id,
             "name": interaction.user.name,
             "bal": 0,
@@ -20,7 +20,7 @@ module.exports = {
             "mods": []
         }
         
-        var jsonString = JSON.stringify(newUser);
+        let jsonString = JSON.stringify(newUser);
 
         // Probably want to async this at some point
         fs.writeFileSync(`./data/users/${interaction.user.id}.json`, jsonString);
