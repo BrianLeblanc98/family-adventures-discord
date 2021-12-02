@@ -2,7 +2,7 @@
     "id": "",
     "name": "",
     "bal": 0,
-    "current_car": "",
+    "current_car_id": "",
     "cars": [],
     "items": [],
     "mods": []
