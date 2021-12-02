@@ -33,7 +33,7 @@ client.on('interactionCreate', async interaction => {
 client.on('interactionCreate', async interaction => {
     if(!interaction.isButton()) return;
 
-    interaction.reply(`<@${interaction.user.tag}> pressed ${interaction.customId}`);
+    interaction.reply(`<@${interaction.user.id}> pressed ${interaction.customId}`);
     // interaction.customId
     // interaction.user.tag
 });
