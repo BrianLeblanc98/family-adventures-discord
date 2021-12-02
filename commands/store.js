@@ -9,15 +9,15 @@ module.exports = {
         const row = new MessageActionRow()
             .addComponents(
                 new MessageButton()
-                    .setCustomId('cars')
+                    .setCustomId('shopCars')
                     .setLabel('Cars')
                     .setStyle('PRIMARY'),
                 new MessageButton()
-                    .setCustomId('items')
+                    .setCustomId('shopItems')
                     .setLabel('Items')
                     .setStyle('PRIMARY'),
                 new MessageButton()
-                    .setCustomId('mods')
+                    .setCustomId('shopMods')
                     .setLabel('Mods')
                     .setStyle('PRIMARY')
             );
