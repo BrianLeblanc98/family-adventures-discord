@@ -6,6 +6,11 @@ module.exports = {
 		.setName('work')
 		.setDescription('Do some small work for the family, and get a small amount of Corona in return'),
 	async execute(interaction) {
+        if (!fs.existsSync(`./data/users/${interaction.user.id}.json`)){
+            await interaction.reply(`You're not part of the family <@${interaction.user.id}>! Join us by using /join`);
+            return;
+        }
+        
         let userJson = JSON.parse(fs.readFileSync(`./data/users/${interaction.user.id}.json`));
         userJson.bal += 2;
 
@@ -14,6 +19,6 @@ module.exports = {
         // Probably want to async this at some point
         fs.writeFileSync(`./data/users/${interaction.user.id}.json`, jsonString);
 
-		await interaction.reply(`Work done, added 2 Coronas to your balance. Current balance: ${userJson.bal}`);
+		await interaction.reply(`Work done, added 2 Coronas to your balance. Current balance: ${userJson.bal} Coronas`);
 	},
 };

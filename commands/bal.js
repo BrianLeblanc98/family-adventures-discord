@@ -12,6 +12,6 @@ module.exports = {
         }
 
         let userJson = JSON.parse(fs.readFileSync(`./data/users/${interaction.user.id}.json`));
-        await interaction.reply(`Your current balance is ${userJson.bal}`);
+        await interaction.reply(`Your current balance is ${userJson.bal} Coronas`);
 	},
 };
