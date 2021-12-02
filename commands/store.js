@@ -22,6 +22,6 @@ module.exports = {
                     .setStyle('PRIMARY')
             );
 
-		await interaction.reply({ content: "What do you want to shop for?", components: [row]});
+		await interaction.reply({ content: "Current balance: {balance eventually}\nWhat do you want to shop for?", components: [row]});
 	},
 };

@@ -15,6 +15,7 @@ client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}`);
 });
 
+// Command listener
 client.on('interactionCreate', async interaction => {
     if(!interaction.isCommand()) return;
 
@@ -26,6 +27,12 @@ client.on('interactionCreate', async interaction => {
 		console.error(error);
 		return interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
 	}
+});
+
+// Button listener
+client.on('interactionCreate', async interaction => {
+    if(interaction.isButton()) return;
+    console.log(interaction);
 });
 
 client.login(token);
