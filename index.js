@@ -16,7 +16,9 @@ async function mongoConnect() {
         await mongoClient.connect();
     
         await mongoClient.db('familyAdventuresDiscordDb').command({ping: 1});
-        await mongoClient.db('familyAdventuresDiscordDb').collection.insertOne({x: 2})
+
+
+        await mongoClient.db('familyAdventuresDiscordDb').collection('users').insertOne({x: 2})
         console.log('connected to mongodb')
     } finally {
         
