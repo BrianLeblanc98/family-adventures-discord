@@ -35,8 +35,13 @@ module.exports = {
                 
             );
         
-        //const filter = i => i.customId === 'primary' && i.user.id === '122157285790187530';
-        //const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
+        const filter = i => i.customId === '325i' && i.user.id === interaction.user.id;
+        const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
+        collector.on('collect', async i => {
+            if (i.customId === '325i') {
+                await i.update({ content: '325i', components: [] });
+            }
+        });
 		await interaction.reply({ content: "Which car do you want to start with?", components: [row], ephemeral: true});
 	},
 };
