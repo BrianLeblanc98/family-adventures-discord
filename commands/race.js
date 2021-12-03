@@ -32,8 +32,7 @@ module.exports = {
                     i.reply({ content: 'You\'ve already joined this race!', ephemeral: true });
                 } else {
                     let prev = await interaction.fetchReply();
-                    console.log(prev)
-                    // await interaction.editReply(prev + `${i.tag}\n`);
+                    await interaction.editReply(prev.content + `${i.tag}\n`);
                 }
             }
         });
