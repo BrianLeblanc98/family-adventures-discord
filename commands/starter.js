@@ -35,9 +35,9 @@ module.exports = {
                 
             );
         
-		let message = await interaction.reply({ content: "Which car do you want to start with?", components: [row], ephemeral: true});
-
-        const collector = message.createMessageComponentCollector({ componentType: 'BUTTON', time: 15000 });
+        let message = { content: "Which car do you want to start with?", components: [row], ephemeral: true};
+        
+        const collector = interaction.createMessageComponentCollector({ componentType: 'BUTTON', time: 15000 });
 
         collector.on('collect', i => {
             if (i.user.id === interaction.user.id) {
@@ -50,5 +50,7 @@ module.exports = {
         collector.on('end', collected => {
             console.log(`Collected ${collected.size} interactions.`);
         });
+
+		await interaction.reply(message);
 	},
 };
