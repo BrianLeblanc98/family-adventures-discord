@@ -6,7 +6,11 @@ module.exports = {
 		.setDescription('Show the family leaderboard'),
 	async execute(interaction) {
         let result = await mongoClient.db('familyAdventuresDiscordDb').collection('users').find().sort({ 'bal': -1 }).toArray();
-        console.log(result);
-		await interaction.reply('');
+        
+        let output = "Current leaderboard";
+        for (user of result) {
+            output += `${user.name}: ${bal}\n`
+        }
+		await interaction.reply(output);
 	},
 };
