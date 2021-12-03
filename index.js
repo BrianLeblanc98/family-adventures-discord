@@ -1,8 +1,24 @@
 const { token } = require('./config.json');
+
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
+const { MongoClient } = require('mongodb');
+
+const mongoUri = 'mongodb://10.0.0.101:27017';
+
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS]});
+const mongoClient = new MongoClient(uri);
+
+// Connect to mongo database before connecting to discord
+try {
+    await mongoClient.connect();
+
+    await client.db('""').command({ping: 1});
+    console.log('connected to mongodb')
+} finally {
+    await client.close();
+}
 
 client.commands = new Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
@@ -12,7 +28,7 @@ for (const file of commandFiles) {
     client.commands.set(command.data.name, command);
 }
 client.once('ready', () => {
-    console.log(`Logged in as ${client.user.tag}`);
+    console.log(`Logged into discord as ${client.user.tag}`);
 });
 
 // Command listener
