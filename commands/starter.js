@@ -42,6 +42,7 @@ module.exports = {
 
         collector.on('collect', async i => {
             if (i.user.id === interaction.user.id) {
+                interaction.updateReply('You\'ve made your choice');
                 let carName = 'unknown';
                 if (i.customId == '325i'){
                     carName = '1990 BMW 325i'
