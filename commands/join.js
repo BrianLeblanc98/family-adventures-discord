@@ -19,7 +19,7 @@ module.exports = {
             "items": [],
             "mods": []
         }
-        
+        await mongoClient.db('familyAdventuresDiscordDb').collection('users').insertOne(newUser)
         let jsonString = JSON.stringify(newUser);
 
         // Probably want to async this at some point
