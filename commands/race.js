@@ -75,7 +75,7 @@ module.exports = {
 
             let message = '';
             if (entryListIds.length <= 1) {
-                message = 'Not enough people showed up, you need at least 2 to race. The family is disappointed.';
+                message = 'Not enough people showed up, you need at least 2 people to race. The family is disappointed.';
             } else {
                 let winnings = entry*entryListIds.length;
                 let winnerId = entryListIds[Math.floor(Math.random() * entryListIds.length)];
@@ -93,7 +93,7 @@ module.exports = {
 
                     let loserQuery = {'id': entrantId.toString()};
                     let loserData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne(loserQuery);
-                    
+
                     newBal = loserData.bal - entry;
                     update = { $set: { 'bal': newBal } };
                     await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(loserQuery, update);
