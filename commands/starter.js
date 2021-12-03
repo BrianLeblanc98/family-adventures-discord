@@ -51,7 +51,7 @@ module.exports = {
                 } else if (i.customId == 'mustang') {
                     carName = '2002 Honda Civic Si'
                 }
-                i.followUp(`${i.user.id} chose the ${carname} as their starter car, welcome them to the family!`);
+                i.followUp(`${i.user.id} chose the ${carName} as their starter car, welcome them to the family!`);
             } else {
                 i.followUp({ content: `These buttons aren't for you!`, ephemeral: true });
             }
