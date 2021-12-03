@@ -7,7 +7,7 @@ module.exports = {
 		.setDescription('Make our family proud, and take out some poser who thinks their car is fast.')
         .addStringOption(option => 
             option.setName('bet')
-                .setDescription('How much you want to bet, you\'ll get 50% of what you bet as winnings. You can also bet all')
+                .setDescription('How much you want to bet, you\'ll get 20% of what you bet as winnings. Between 10-1000')
                 .setRequired(true)),
 	async execute(interaction) {
         let userQuery = {'id': interaction.user.id.toString()};
@@ -22,6 +22,11 @@ module.exports = {
             return;
         }
 
+        let minBet = 10;
+        let maxBet = 1000;
+        let payoutPercent = 0.2;
+        let winPercent = 0.9;
+
         let betString = interaction.options.getString('bet');
         let bet = 0;
         if (betString === 'all') {
@@ -30,22 +35,27 @@ module.exports = {
             // Check if it's a positive integer
             bet = parseInt(betString);
         } else {
-            await interaction.reply({ content: "Please enter 'all' or a positive non-decimal number", ephemeral: true});
+            await interaction.reply({ content: "Please enter 'all' or a positive non-decimal number", ephemeral: true });
             return;
         }
 
-        if (bet <= 0 || bet > userData.bal) {
+        if (bet < 10) {
+            await interaction.reply({ content: `The minimum bet is 10 Coronas`, ephemeral: true });
+            return;
+        } else if (bet > userData.bal) {
             await interaction.reply(`Your current balance is ${userData.bal}, don't try to lie to the family about how much you have!`);
             return;
+        } else if (bet > 1000) {
+            bet = 1000;
         }
 
         let newBal;
         let carQuery = { '_id': userData.current_car_id };
         let carData = await mongoClient.db('familyAdventuresDiscordDb').collection('cars').findOne(carQuery);
         let carName = `${carData.year} ${carData.manufacturer} ${carData.name}`;
-        if (Math.random() < 0.9) {
+        if (Math.random() < winPercent) {
             // WIN
-            let winnings = Math.floor(bet * 0.5);
+            let winnings = Math.floor(bet * payoutPercent);
             newBal = userData.bal + winnings;
 
             await interaction.reply(`<@${interaction.user.id}> clapped some cheeks with their ${carName}! Congrats on their ${winnings} Corona win!`);
