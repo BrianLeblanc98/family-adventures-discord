@@ -19,6 +19,19 @@ module.exports = {
                     .setLabel(`Join Race! (${entry} Coronas)`)
                     .setStyle('PRIMARY')
             )
-		await interaction.reply({ content: `@<${interaction.user.id}> Started a family race with an entry of ${entry} Coronas`, components: [row] });
+		await interaction.reply({ content: `@<${interaction.user.id}> Started a family race with an entry of ${entry} Coronas.\nStarts in {x} seconds`, components: [row] });
+
+        let message = await interaction.fetchReply();
+        const collector = message.createMessageComponentCollector({ componentType: 'BUTTON', time: 15000 });
+
+        collector.on('collect', async i => {
+            if (i.customId === 'join') {
+                interaction.followUp(`<@i.user.id> Joined the race`);
+            }
+        });
+
+        collector.on('end', async () => {
+            interaction.editReply('Race over');
+        });
 	},
 };
