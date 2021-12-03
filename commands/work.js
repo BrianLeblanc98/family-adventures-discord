@@ -6,8 +6,8 @@ module.exports = {
 		.setName('work')
 		.setDescription('Do some small work for the family, and get a small amount of Corona in return.'),
 	async execute(interaction) {
-        let query = {'id': interaction.user.id.toString()};
-        let userData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne(query);
+        let userQuery = {'id': interaction.user.id.toString()};
+        let userData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne(userQuery);
         if (!userData){
             await interaction.reply({ content: `You're not part of the family <@${interaction.user.id}>! Join us by using /join`, ephemeral: true });
             return;
@@ -15,7 +15,7 @@ module.exports = {
 
         let newBal = userData.bal + 2;
         let update = { $set: { 'bal': newBal } };
-        await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(query, update);
+        await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(userQuery, update);
 
 		await interaction.reply(`Small family work done, added 2 Coronas to your balance. Current balance: ${newBal} Coronas`);
 	},
