@@ -1,11 +1,8 @@
-const { token } = require('./config.json');
+const { token, mongoUri } = require('./config.json');
 
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 const { MongoClient } = require('mongodb');
-
-const mongoUri = 'mongodb://10.0.0.101:27017';
-
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS]});
 const mongoClient = new MongoClient(mongoUri);
@@ -16,8 +13,6 @@ async function mongoConnect() {
         await mongoClient.connect();
     
         await mongoClient.db('familyAdventuresDiscordDb').command({ping: 1});
-
-
         // await mongoClient.db('familyAdventuresDiscordDb').collection('users').insertOne({x: 2})
         console.log('connected to mongodb')
     } finally {
