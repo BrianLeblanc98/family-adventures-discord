@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const { token, mongoUri } = require('./config.json');
 
 const fs = require('fs');
