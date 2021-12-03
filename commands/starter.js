@@ -40,7 +40,7 @@ module.exports = {
         let message = await interaction.fetchReply();
         const collector = message.createMessageComponentCollector({ componentType: 'BUTTON', time: 15000 });
         
-        collector.on('collect', i => {
+        collector.on('collect', async i => {
             if (i.user.id === interaction.user.id) {
                 await i.deleteReply();
                 i.followUp(`${i.user.id} chose the ${i.label} as their starter car. Welcome them to the family!`);
