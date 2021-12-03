@@ -42,7 +42,7 @@ module.exports = {
         let newBal;
         let carQuery = { '_id': userData.current_car_id };
         let carData = await mongoClient.db('familyAdventuresDiscordDb').collection('cars').findOne(carQuery);
-        let carName = `${carData.year} ${carData.manufacturor} ${carData.name}`;
+        let carName = `${carData.year} ${carData.manufacturer} ${carData.name}`;
         if (Math.random() < 0.9) {
             // WIN
             let winnings = Math.floor(bet * 0.5);
