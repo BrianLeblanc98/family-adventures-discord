@@ -6,7 +6,11 @@ module.exports = {
 		.setName('join')
 		.setDescription('Join the family, get your first car, and get ready to race!'),
 	async execute(interaction) {
-        if (fs.existsSync(`./data/users/${interaction.user.id}.json`)){
+        // if (fs.existsSync(`./data/users/${interaction.user.id}.json`)){
+        //     await interaction.reply(`You're already part of the family <@${interaction.user.id}>!`);
+        //     return;
+        // }
+        if (await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne({'id': interaction.user.id.toString()})){
             await interaction.reply(`You're already part of the family <@${interaction.user.id}>!`);
             return;
         }
