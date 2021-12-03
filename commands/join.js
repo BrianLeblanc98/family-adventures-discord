@@ -24,7 +24,7 @@ module.exports = {
         await mongoClient.db('familyAdventuresDiscordDb').collection('users').insertOne(newUser);
         console.log(`${interaction.user.username} added in db`);
 
-        let cars = await mongoClient.db('familyAdventuresDiscordDb').collection('cars').find({'starter': true});
+        let cars = await mongoClient.db('familyAdventuresDiscordDb').collection('cars').find({'starter': true}).toArray();
         for (car of cars) {
             console.log(car);
         }
