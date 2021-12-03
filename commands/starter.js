@@ -57,7 +57,7 @@ module.exports = {
                 }
 
                 let carQuery = { 'name': carName }
-                let carData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne(carQuery);
+                let carData = await mongoClient.db('familyAdventuresDiscordDb').collection('cars').findOne(carQuery);
 
                 i.reply(`<@${i.user.id}> chose the ${carData.name} as their starter car, welcome them to the family!`);
 
