@@ -9,7 +9,7 @@ module.exports = {
         
         let output = "Current leaderboard";
         for (user of result) {
-            output += `${user.name}: ${bal}\n`
+            output += `${user.name}: ${user.bal}\n`
         }
 		await interaction.reply(output);
 	},
