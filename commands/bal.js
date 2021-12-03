@@ -13,6 +13,6 @@ module.exports = {
 
         let userData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne({'id': interaction.user.id.toString()})
 
-        await interaction.reply(`Your current balance is ${userData} Coronas`);
+        await interaction.reply(`Your current balance is ${userData.toString()} Coronas`);
 	},
 };
