@@ -2,11 +2,11 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('easy-race')
-		.setDescription('Make our family proud, and take out some poser who thinks their car is fast.')
+		.setName('medium-race')
+		.setDescription('Make our family proud, and take out some kid with a lightly tuned car.')
         .addStringOption(option => 
             option.setName('bet')
-                .setDescription('How much you want to bet, you\'ll get 20% of what you bet as winnings. Between 10-250')
+                .setDescription('How much you want to bet, you\'ll get 35% of what you bet as winnings. Between 100-2500')
                 .setRequired(true)),
 	async execute(interaction) {
         let userQuery = {'id': interaction.user.id.toString()};
@@ -21,10 +21,10 @@ module.exports = {
             return;
         }
 
-        let minBet = 10;
-        let maxBet = 250;
-        let payoutPercent = 0.20;
-        let winPercent = 0.95;
+        let minBet = 100;
+        let maxBet = 2500;
+        let payoutPercent = 0.35;
+        let winPercent = 0.75;
 
         let betString = interaction.options.getString('bet');
         let bet = 0;
@@ -57,11 +57,11 @@ module.exports = {
             let winnings = Math.ceil(bet * payoutPercent);
             newBal = userData.bal + winnings;
 
-            await interaction.reply(`<@${interaction.user.id}> clapped some cheeks with their ${carName}! Congrats on their ${winnings} Corona win!`);
+            await interaction.reply(`<@${interaction.user.id}> decimated some kid ${carName}! Congrats on their ${winnings} Corona win!`);
         } else {
             // LOSE
             newBal = userData.bal - bet;
-            await interaction.reply(`<@${interaction.user.id}> lost a ${bet} Corona bet in their ${carName}, bringing shame on the family.`);
+            await interaction.reply(`<@${interaction.user.id}> lost a ${bet} Corona bet in their ${carName}. It was a close race, but still disappointing.`);
         }
 
         let update = { $set: { 'bal': newBal } };
