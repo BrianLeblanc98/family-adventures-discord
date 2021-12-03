@@ -46,9 +46,9 @@ module.exports = {
                 let carName = 'unknown';
                 if (i.customId == '325i'){
                     carName = '1990 BMW 325i'
-                } else if (i.customId == 'mustang') {
+                } else if (i.customId == 'Mustang') {
                     carName = '1994 Ford Mustang'
-                } else if (i.customId == 'civic') {
+                } else if (i.customId == 'Civic Si') {
                     carName = '2002 Honda Civic Si'
                 }
                 i.reply(`<@${i.user.id}> chose the ${carName} as their starter car, welcome them to the family!`);
