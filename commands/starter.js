@@ -13,7 +13,7 @@ module.exports = {
             return;
         }
 
-        if (userData.bought_start) {
+        if (userData.bought_starter) {
             await interaction.reply(`You've already chosen your starter <@${interaction.user.id}>! Don't think you can get another free car from the family!`);
             return;
         }
