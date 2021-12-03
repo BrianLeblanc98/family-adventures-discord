@@ -65,7 +65,7 @@ module.exports = {
 
                     let prev = await interaction.fetchReply();
                     await interaction.editReply(prev.content + `\n${i.user.tag}\n`);
-                    i.reply({ content: `You've joined ${interaction.user.id}'s race for ${entry} Coronas.`, ephemeral: true });
+                    i.reply({ content: `You've joined ${interaction.user.tag}'s race for ${entry} Coronas.`, ephemeral: true });
                 }
             }
         });
