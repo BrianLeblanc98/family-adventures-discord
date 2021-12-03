@@ -43,14 +43,22 @@ module.exports = {
         collector.on('collect', async i => {
             if (i.user.id === interaction.user.id) {
                 await i.deleteReply();
-                i.followUp(`${i.user.id} chose the ${i.customId.label} button.`);
+                let carName = 'unknown';
+                if (i.customId == '325i'){
+                    carName = '1990 BMW 325i'
+                } else if (i.customId == 'mustang') {
+                    carName = '1994 Ford Mustang'
+                } else if (i.customId == 'mustang') {
+                    carName = '2002 Honda Civic Si'
+                }
+                i.followUp(`${i.user.id} chose the ${carname} as their starter car, welcome them to the family!`);
             } else {
                 i.followUp({ content: `These buttons aren't for you!`, ephemeral: true });
             }
         });
 
-        collector.on('end', collected => {
-            console.log(`Collected ${collected.size} interactions.`);
-        });
+        // collector.on('end', collected => {
+        //     console.log(`Collected ${collected.size} interactions.`);
+        // });
 	},
 };
