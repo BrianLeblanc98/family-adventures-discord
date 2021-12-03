@@ -3,5 +3,6 @@
     "manufacturer": "Ford",
     "year": "1994",
     "description": "",
+    "cost": 1000,
     "starter": true
 }
