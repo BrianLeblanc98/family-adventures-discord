@@ -7,6 +7,7 @@ const { MongoClient } = require('mongodb');
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS]});
 global.mongoClient = new MongoClient(mongoUri);
+global.ongoingRace = false;
 
 // Connect to mongo database before connecting to discord
 async function mongoConnect() {

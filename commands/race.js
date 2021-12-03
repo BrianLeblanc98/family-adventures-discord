@@ -22,6 +22,11 @@ module.exports = {
             return;
         }
 
+        if (ongoingRace) {
+            await interaction.reply({ content: `There's a race already going on, wait for it to end before starting another!`, ephemeral: true });
+        }
+        ongoingRace = true;
+
         let entry = interaction.options.getInteger('entry');
 
         const row = new MessageActionRow()
@@ -56,16 +61,17 @@ module.exports = {
                     }
 
                     entryListIds.push(i.user.id);
-                    
+
                     let prev = await interaction.fetchReply();
                     await interaction.editReply(prev.content + `\n${i.user.tag}\n`);
-                    i.reply({ content: `You've joined ${interaction.user.id}'s race for ${entry} Coronas.'`, ephemeral: true });
+                    i.reply({ content: `You've joined ${interaction.user.id}'s race for ${entry} Coronas.`, ephemeral: true });
                 }
             }
         });
 
         collector.on('end', async () => {
             interaction.editReply({ content: `<@${interaction.user.id}>'s ${entry} Corona race is over.`, components: [] });
+            ongoingRace = false;
         });
 	},
 };
