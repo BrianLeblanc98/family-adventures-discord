@@ -52,7 +52,9 @@ module.exports = {
                     carName = '2002 Honda Civic Si'
                 }
                 i.reply(`<@${i.user.id}> chose the ${carName} as their starter car, welcome them to the family!`);
-                console.log(userData);
+
+                let update = { $set: {'bought_starter': true} };
+                await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(query, update);
             } else {
                 i.reply({ content: `These buttons aren't for you!`, ephemeral: true });
             }
