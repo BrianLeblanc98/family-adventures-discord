@@ -35,6 +35,8 @@ module.exports = {
                 
             );
         
+		await interaction.reply({ content: "Which car do you want to start with?", components: [row], ephemeral: true});
+
         const filter = i => i.customId === '325i' && i.user.id === interaction.user.id;
         const collector = interaction.message.createMessageComponentCollector({ filter, time: 15000 });
         collector.on('collect', async i => {
@@ -42,6 +44,5 @@ module.exports = {
                 await i.update({ content: '325i', components: [] });
             }
         });
-		await interaction.reply({ content: "Which car do you want to start with?", components: [row], ephemeral: true});
 	},
 };
