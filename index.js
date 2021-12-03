@@ -18,7 +18,7 @@ async function mongoConnect() {
         await client.db('""').command({ping: 1});
         console.log('connected to mongodb')
     } finally {
-        await client.close();
+        
     }
 }
 mongoConnect().catch(console.dir);
