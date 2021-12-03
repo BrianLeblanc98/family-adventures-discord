@@ -17,14 +17,6 @@ module.exports = {
         let update = { $set: { 'bal': newBal } }
         await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(query, update)
 
-        // let userJson = JSON.parse(fs.readFileSync(`./data/users/${interaction.user.id}.json`));
-        // userJson.bal += 2;
-
-        // let jsonString = JSON.stringify(userJson);
-
-        // // Probably want to async this at some point
-        // fs.writeFileSync(`./data/users/${interaction.user.id}.json`, jsonString);
-
 		await interaction.reply(`Work done, added 2 Coronas to your balance. Current balance: ${newBal} Coronas`);
 	},
 };
