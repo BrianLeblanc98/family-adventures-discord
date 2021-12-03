@@ -14,8 +14,8 @@ module.exports = {
         }
 
         let newBal = userData.bal + 2;
-        let update = { $set: { 'bal': newBal } }
-        await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(query, update)
+        let update = { $set: { 'bal': newBal } };
+        await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(query, update);
 
 		await interaction.reply(`Work done, added 2 Coronas to your balance. Current balance: ${newBal} Coronas`);
 	},
