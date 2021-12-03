@@ -31,6 +31,6 @@ module.exports = {
             .setImage('https://i.imgur.com/AfFp7pu.png')
             .setTimestamp()
             .setFooter('Some footer text here', 'https://i.imgur.com/AfFp7pu.png');
-        await interaction.reply(exampleEmbed);
+        await interaction.reply({ embeds: [ exampleEmbed ] });
 	},
 };
