@@ -5,7 +5,7 @@ module.exports = {
 		.setName('help')
 		.setDescription('Display help information for the family.'),
 	async execute(interaction) {
-		help = {
+		let help = {
 			'/help': 'Display help information for the family.',
 			'/join': 'Join the family, get your first car, and get ready to race!',
 			'/work': 'Do some small work for the family, and get a small amount of Corona in return.',
@@ -14,11 +14,11 @@ module.exports = {
 			'/leaderboard': 'Show the family leaderboard.',
 			'/starter': 'Choose your starting car. Each new family member only gets to do this once!',
 			'/store': 'Look at and buy many things from the family store, using Corona as a currency!'
-		}
-		keys = help.keys();
-		commands = [];
-		descriptions = [];
-		for (key of keys) {
+		};
+		let keys = Object.keys(help);
+		let commands = [];
+		let descriptions = [];
+		for (let key of keys) {
 			commands.append(key);
 			descriptions.append(help[key]);
 		}
