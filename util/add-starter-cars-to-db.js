@@ -14,7 +14,7 @@ async function run() {
         await mongoClient.db('familyAdventuresDiscordDb').collection('cars').insertOne(a);
         await mongoClient.db('familyAdventuresDiscordDb').collection('cars').insertOne(b);
         await mongoClient.db('familyAdventuresDiscordDb').collection('cars').insertOne(c);
-        await mongoClient.db('familyAdventuresDiscordDb').collection('cars').insertOne(c);
+        await mongoClient.db('familyAdventuresDiscordDb').collection('cars').insertOne(d);
     } finally {
         
     }
