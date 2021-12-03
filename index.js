@@ -48,12 +48,12 @@ client.on('interactionCreate', async interaction => {
 });
 
 // Button listener
-// client.on('interactionCreate', async interaction => {
-//     if(!interaction.isButton()) return;
+client.on('interactionCreate', async interaction => {
+    if(!interaction.isButton()) return;
 
-//     interaction.reply(`<@${interaction.user.id}> pressed ${interaction.customId}`);
-//     // interaction.customId
-//     // interaction.user.tag
-// });
+    interaction.reply(`<@${interaction.user.id}> pressed ${interaction.customId}`);
+    // interaction.customId
+    // interaction.user.tag
+});
 
 client.login(token);
