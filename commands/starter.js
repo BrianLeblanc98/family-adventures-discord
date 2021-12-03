@@ -42,7 +42,7 @@ module.exports = {
 
         collector.on('collect', async i => {
             if (i.user.id === interaction.user.id) {
-                // await i.deleteReply();
+                interaction.deleteReply();
                 let carName = 'unknown';
                 if (i.customId == '325i'){
                     carName = '1990 BMW 325i'
@@ -51,7 +51,7 @@ module.exports = {
                 } else if (i.customId == 'civic') {
                     carName = '2002 Honda Civic Si'
                 }
-                i.reply(`${i.user.id} chose the ${carName} as their starter car, welcome them to the family!`);
+                i.reply(`${i.user.tag} chose the ${carName} as their starter car, welcome them to the family!`);
             } else {
                 i.reply({ content: `These buttons aren't for you!`, ephemeral: true });
             }

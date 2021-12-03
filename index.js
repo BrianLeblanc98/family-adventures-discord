@@ -50,8 +50,6 @@ client.on('interactionCreate', async interaction => {
 // Button listener
 client.on('interactionCreate', async interaction => {
     if(!interaction.isButton()) return;
-
-    // interaction.reply();
 });
 
 client.login(token);
