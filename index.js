@@ -15,13 +15,15 @@ async function mongoConnect() {
     try {
         await mongoClient.connect();
     
-        await mongoClient.db('').command({ping: 1});
+        await mongoClient.db('familyAdventuresDiscordDb').command({ping: 1});
+        await mongoClient.db('familyAdventuresDiscordDb').collection.insertOne({x: 2})
         console.log('connected to mongodb')
     } finally {
         
     }
 }
 mongoConnect().catch(console.dir);
+
 
 client.commands = new Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
