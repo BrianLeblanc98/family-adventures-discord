@@ -8,7 +8,7 @@ const mongoUri = 'mongodb://10.0.0.101:27017';
 
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS]});
-const mongoClient = new MongoClient(uri);
+const mongoClient = new MongoClient(mongoUri);
 
 // Connect to mongo database before connecting to discord
 async function mongoConnect() {
