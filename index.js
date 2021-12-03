@@ -11,14 +11,17 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS]});
 const mongoClient = new MongoClient(uri);
 
 // Connect to mongo database before connecting to discord
-try {
-    await mongoClient.connect();
-
-    await client.db('""').command({ping: 1});
-    console.log('connected to mongodb')
-} finally {
-    await client.close();
+async function mongoConnect() {
+    try {
+        await mongoClient.connect();
+    
+        await client.db('""').command({ping: 1});
+        console.log('connected to mongodb')
+    } finally {
+        await client.close();
+    }
 }
+mongoConenct().catch(console.dir);
 
 client.commands = new Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
