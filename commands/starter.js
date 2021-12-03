@@ -39,13 +39,17 @@ module.exports = {
 
         let message = await interaction.fetchReply();
         const collector = message.createMessageComponentCollector({ componentType: 'BUTTON', time: 15000 });
-        
+
         collector.on('collect', i => {
             if (i.user.id === interaction.user.id) {
-                i.followUp(`${i.user.id} chose the ${i.label} as their starter car. Welcome them`);
+                i.followUp(`${i.user.id} clicked on the ${i.customId} button.`);
             } else {
                 i.followUp({ content: `These buttons aren't for you!`, ephemeral: true });
             }
+        });
+
+        collector.on('end', collected => {
+            console.log(`Collected ${collected.size} interactions.`);
         });
 	},
 };
