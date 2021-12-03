@@ -20,7 +20,7 @@ module.exports = {
 		let commands = '';
 		let descriptions = '';
 		for (let key of keys) {
-			commands += `${keys}\n`;
+			commands += `${key}\n`;
 			descriptions += `${help[key]}\n`
 		}
 		const embed = new MessageEmbed()
