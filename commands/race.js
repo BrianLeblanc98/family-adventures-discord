@@ -82,7 +82,11 @@ module.exports = {
                 let winnerQuery = {'id': winnerId.toString()};
                 let winnerData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne(winnerQuery);
 
-                message = `<@${winnerData.id}> won the ${winnings} Corona pot! They showed the family who's boss.`;
+                let carQuery = { '_id': winnerData.current_car_id };
+                let carData = await mongoClient.db('familyAdventuresDiscordDb').collection('cars').findOne(carQuery);
+                let carName = `${carData.year} ${carData.manufacturer} ${carData.name}`;
+
+                message = `<@${winnerData.id}> won the ${winnings} Corona pot with their ${carName}! They showed the family who's boss.`;
 
                 let newBal = winnerData.bal + winnings - entry;
                 let update = { $set: { 'bal': newBal } };

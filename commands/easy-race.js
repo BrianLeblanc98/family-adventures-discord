@@ -23,9 +23,9 @@ module.exports = {
         }
 
         let minBet = 10;
-        let maxBet = 1000;
-        let payoutPercent = 0.2;
-        let winPercent = 0.9;
+        let maxBet = 250;
+        let payoutPercent = 0.20;
+        let winPercent = 0.95;
 
         let betString = interaction.options.getString('bet');
         let bet = 0;
@@ -39,14 +39,14 @@ module.exports = {
             return;
         }
 
-        if (bet < 10) {
-            await interaction.reply({ content: `The minimum bet is 10 Coronas`, ephemeral: true });
+        if (bet < minBet) {
+            await interaction.reply({ content: `The minimum bet is ${minBet} Coronas`, ephemeral: true });
             return;
         } else if (bet > userData.bal) {
             await interaction.reply(`Your current balance is ${userData.bal}, don't try to lie to the family about how much you have!`);
             return;
-        } else if (bet > 1000) {
-            bet = 1000;
+        } else if (bet > maxBet) {
+            bet = maxBet;
         }
 
         let newBal;
