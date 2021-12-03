@@ -5,7 +5,7 @@ const { Client, Collection, Intents } = require('discord.js');
 const { MongoClient } = require('mongodb');
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS]});
-const mongoClient = new MongoClient(mongoUri);
+global.mongoClient = new MongoClient(mongoUri);
 
 // Connect to mongo database before connecting to discord
 async function mongoConnect() {
@@ -29,7 +29,8 @@ for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
     client.commands.set(command.data.name, command);
 }
-client.once('ready', () => {
+
+client.once('ready', async () => {
     console.log(`Logged into discord as ${client.user.tag}`);
 });
 
