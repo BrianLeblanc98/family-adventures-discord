@@ -42,7 +42,7 @@ module.exports = {
 
         collector.on('collect', async i => {
             if (i.user.id === interaction.user.id) {
-                interaction.editReply('You\'ve made your choice');
+                interaction.editReply({ content: 'You\'ve made your choice', components: [] });
                 let carName = 'unknown';
                 if (i.customId == '325i'){
                     carName = '1990 BMW 325i'
