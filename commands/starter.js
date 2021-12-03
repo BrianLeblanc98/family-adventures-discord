@@ -25,15 +25,18 @@ module.exports = {
                     .setLabel('1990 BMW 325i')
                     .setStyle('PRIMARY'),
                 new MessageButton()
-                    .setCustomId('civic')
-                    .setLabel('2002 Honda Civic Si')
-                    .setStyle('PRIMARY'),
-                new MessageButton()
                     .setCustomId('mustang')
                     .setLabel('1994 Ford Mustang')
+                    .setStyle('PRIMARY'),
+                new MessageButton()
+                    .setCustomId('civic')
+                    .setLabel('2002 Honda Civic Si')
                     .setStyle('PRIMARY')
+                
             );
-
-		await interaction.reply({ content: "Which car do you want to start with?", components: [row]});
+        
+        //const filter = i => i.customId === 'primary' && i.user.id === '122157285790187530';
+        //const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
+		await interaction.reply({ content: "Which car do you want to start with?", components: [row], ephemeral: true});
 	},
 };
