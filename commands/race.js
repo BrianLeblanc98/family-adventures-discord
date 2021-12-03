@@ -24,6 +24,7 @@ module.exports = {
 
         if (ongoingRace) {
             await interaction.reply({ content: `There's a race already going on, wait for it to end before starting another!`, ephemeral: true });
+            return;
         }
         ongoingRace = true;
 
