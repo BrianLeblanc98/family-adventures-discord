@@ -52,12 +52,12 @@ module.exports = {
                     let entrantQuery = {'id': i.user.id.toString()};
                     let entrantData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne(entrantQuery);
                     if (!entrantData.bought_starter) {
-                        await interaction.reply({ content: `You haven't chosen your starter car <@${i.user.id}>! Use /starter to get your first car from the family.`, ephemeral: true });
+                        await i.reply({ content: `You haven't chosen your starter car <@${i.user.id}>! Use /starter to get your first car from the family.`, ephemeral: true });
                         return;
                     }
 
                     if (entrantData.bal < entry) {
-                        await interaction.reply(`Your current balance is ${entrantData.bal}, don't try to lie to the family about how much you have!`);
+                        await i.reply(`Your current balance is ${entrantData.bal}, don't try to lie to the family about how much you have!`);
                         return;
                     }
 
