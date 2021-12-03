@@ -19,9 +19,9 @@ module.exports = {
             "cars": [],
             "items": [],
             "mods": []
-        }
-        
-        await mongoClient.db('familyAdventuresDiscordDb').collection('users').insertOne(newUser)
+        };
+
+        await mongoClient.db('familyAdventuresDiscordDb').collection('users').insertOne(newUser);
         console.log(`${interaction.user.username} added in db`);
 
         await interaction.reply(`Welcome to the family <@${interaction.user.id}>! Start doing some /work, then you can move onto /easy-race!`);

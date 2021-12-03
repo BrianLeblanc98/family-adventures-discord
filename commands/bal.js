@@ -6,12 +6,13 @@ module.exports = {
 		.setName('bal')
 		.setDescription('Shows your cuurent balance of Coronas, the currency in this family.'),
 	async execute(interaction) {
-        if (!fs.existsSync(`./data/users/${interaction.user.id}.json`)){
-            await interaction.reply(`You're not part of the family <@${interaction.user.id}>! Join us by using /join`);
+        if (await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne({'id': interaction.user.id.toString()})){
+            await interaction.reply(`You're already part of the family <@${interaction.user.id}>!`);
             return;
         }
 
-        let userJson = JSON.parse(fs.readFileSync(`./data/users/${interaction.user.id}.json`));
-        await interaction.reply(`Your current balance is ${userJson.bal} Coronas`);
+        let bal = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne({'id': interaction.user.id.toString()}).bal
+
+        await interaction.reply(`Your current balance is ${bal} Coronas`);
 	},
 };
