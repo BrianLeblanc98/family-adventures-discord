@@ -7,7 +7,7 @@ module.exports = {
 		.setDescription('Make our family proud, and take out some poser who thinks their car is fast.')
         .addStringOption(option => 
             option.setName('bet')
-                .setDescription('How much you want to bet, you\'ll get 20% of what you bet as winnings. Between 10-1000')
+                .setDescription('How much you want to bet, you\'ll get 20% of what you bet as winnings. Between 10-250')
                 .setRequired(true)),
 	async execute(interaction) {
         let userQuery = {'id': interaction.user.id.toString()};
