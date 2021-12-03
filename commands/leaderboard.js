@@ -17,8 +17,8 @@ module.exports = {
         const exampleEmbed = new MessageEmbed()
             .setTitle('Leaderboard')
             .addFields(
-                { name: 'Username', value: 'IAintToxicLul\nKataluo', inline: true },
-                { name: 'Inline field title', value: '50\n100000', inline: true },
+                { name: 'Username', value: 'IAintToxicLulkjlhakjsdfhgjkasdhfkjashdkjasdhfkj\nKataluo', inline: true },
+                { name: 'Coronas', value: '50\n10000000000000000000000000000000000000000000', inline: true },
             )
             .setTimestamp();
         await interaction.reply({ embeds: [ exampleEmbed ] });
