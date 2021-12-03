@@ -30,11 +30,11 @@ module.exports = {
             // Check if it's a positive integer
             bet = parseInt(betString);
         } else {
-            await interaction.reply({ content: "Please enter 'all' or a non-decimal number", ephemeral: true});
+            await interaction.reply({ content: "Please enter 'all' or a positive non-decimal number", ephemeral: true});
             return;
         }
 
-        if (bet > userData.bal) {
+        if (bet <= 0 || bet > userData.bal) {
             await interaction.reply(`Your current balance is ${userData.bal}, don't try to lie to the family about how much you have!`);
             return;
         }
