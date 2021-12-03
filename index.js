@@ -21,7 +21,7 @@ async function mongoConnect() {
         await client.close();
     }
 }
-mongoConenct().catch(console.dir);
+mongoConnect().catch(console.dir);
 
 client.commands = new Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
