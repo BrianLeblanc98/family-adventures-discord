@@ -59,9 +59,5 @@ module.exports = {
                 i.reply({ content: `These buttons aren't for you!`, ephemeral: true });
             }
         });
-
-        // collector.on('end', collected => {
-        //     console.log(`Collected ${collected.size} interactions.`);
-        // });
 	},
 };
