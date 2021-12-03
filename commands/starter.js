@@ -6,8 +6,8 @@ module.exports = {
 		.setName('starter')
 		.setDescription('Choose your starting car. Each new family member only gets to do this once!'),
 	async execute(interaction) {
-		let query = {'id': interaction.user.id.toString()};
-        let userData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne(query);
+		let userQuery = {'id': interaction.user.id.toString()};
+        let userData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne(userQuery);
         if (!userData){
             await interaction.reply({ content: `You're not part of the family <@${interaction.user.id}>! Join us by using /join`, ephemeral: true });
             return;
@@ -43,7 +43,7 @@ module.exports = {
         collector.on('collect', async i => {
             if (i.user.id === interaction.user.id) {
                 await interaction.editReply({ content: 'You\'ve made your choice', components: [] });
-                let carName = 'unknown';
+                let carName;
                 if (i.customId == '325i'){
                     carName = '1990 BMW 325i'
                 } else if (i.customId == 'Mustang') {
@@ -51,10 +51,18 @@ module.exports = {
                 } else if (i.customId == 'Civic Si') {
                     carName = '2002 Honda Civic Si'
                 }
-                i.reply(`<@${i.user.id}> chose the ${carName} as their starter car, welcome them to the family!`);
 
-                let update = { $set: {'bought_starter': true} };
-                await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(query, update);
+                if (!carName) {
+                    i.reply({ content: `Something went wrong, please try again`, ephemeral: true });
+                }
+
+                let carQuery = { 'name': carName }
+                let carData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne(carQuery);
+
+                i.reply(`<@${i.user.id}> chose the ${carData.name} as their starter car, welcome them to the family!`);
+
+                let update = { $set: {'bought_starter': true, 'current_car_id': carData._id, cars: [carData]} };
+                await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(userQuery, update);
             } else {
                 i.reply({ content: `These buttons aren't for you!`, ephemeral: true });
             }
