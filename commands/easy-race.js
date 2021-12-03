@@ -5,9 +5,9 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('easy-race')
 		.setDescription('Make our family proud, and take out some poser who thinks their car is fast.')
-        .addIntegerOption(option => 
+        .addStringOption(option => 
             option.setName('bet')
-                .setDescription('How much you want to bet, you\'ll get 10% of what you bet as winnings.')
+                .setDescription('How much you want to bet, you\'ll get 50% of what you bet as winnings. You can also bet all')
                 .setRequired(true)),
 	async execute(interaction) {
         let query = {'id': interaction.user.id.toString()};
@@ -22,7 +22,17 @@ module.exports = {
             return;
         }
 
-        let bet = interaction.options.getInteger('bet');
+        let betString = interaction.options.getString('bet');
+        let bet = 0;
+        if (betString === 'all') {
+            bet = userData.bal;
+        } else if (/^\+?\d+$/.test(betString)) {
+            // Check if it's a positive integer
+            bet = parseInt(betString);
+        } else {
+            await interaction.reply({ content: "Please enter 'all' or a non-decimal number", ephemeral: true});
+            return;
+        }
 
         if (bet > userData.bal) {
             await interaction.reply(`Your current balance is ${userData.bal}, don't try to lie to the family about how much you have!`);
