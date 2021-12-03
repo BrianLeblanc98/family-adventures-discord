@@ -31,8 +31,9 @@ module.exports = {
                 if (entryListIds.includes(i.user.id)) {
                     i.reply({ content: 'You\'ve already joined this race!', ephemeral: true });
                 } else {
-                    let prev = await interaction.fetchReply().toString();
-                    await interaction.editReply(prev + `${i.tag}\n`);
+                    let prev = await interaction.fetchReply();
+                    console.log(prev)
+                    // await interaction.editReply(prev + `${i.tag}\n`);
                 }
             }
         });
