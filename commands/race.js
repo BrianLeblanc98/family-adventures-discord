@@ -29,7 +29,7 @@ module.exports = {
         collector.on('collect', async i => {
             if (i.customId === 'join') {
                 if (entryListIds.includes(i.user.id)) {
-                    i.interaction.reply({ content: 'You\'ve already joined this race!', ephemeral: true });
+                    i.reply({ content: 'You\'ve already joined this race!', ephemeral: true });
                 }
                 interaction.followUp(`<@${i.user.id}> Joined the race`);
             }
