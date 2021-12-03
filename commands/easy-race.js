@@ -17,6 +17,11 @@ module.exports = {
             return;
         }
 
+        if (!userData.bought_starter) {
+            await interaction.reply(`You haven't chosen your starter car <@${interaction.user.id}>! Use /starter to get your first car from the family.`);
+            return;
+        }
+
         let bet = interaction.options.getInteger('bet');
 
         if (bet > userData.bal) {
