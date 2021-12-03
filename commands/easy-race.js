@@ -45,11 +45,11 @@ module.exports = {
             let winnings = Math.floor(bet * 0.5);
             newBal = userData.bal + winnings;
 
-            await interaction.reply(`You won for the family! Congrats on your ${winnings} Corona win!`);
+            await interaction.reply(`<@${interaction.user.id}> won for the family! Congrats on their ${winnings} Corona win!`);
         } else {
             // LOSE
             newBal = userData.bal - bet;
-            await interaction.reply(`You lost it for the family. You lose your ${bet} Corona bet `);
+            await interaction.reply(`<@${interaction.user.id}> lost a ${bet} Corona bet, bringing shame on the family.`);
         }
 
         let update = { $set: { 'bal': newBal } };
