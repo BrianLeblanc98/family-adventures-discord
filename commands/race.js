@@ -33,6 +33,7 @@ module.exports = {
                 } else {
                     let prev = await interaction.fetchReply();
                     await interaction.editReply(prev.content + `\n${i.user.tag}\n`);
+                    i.reaply({ content: `You've joined ${interaction.user.id}'s race for ${entry} Coronas.'`, ephemeral: true });
                 }
             }
         });
