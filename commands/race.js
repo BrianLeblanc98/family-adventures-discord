@@ -10,6 +10,18 @@ module.exports = {
                 .setDescription('Set the entry fee for the race')
                 .setRequired(true)),
 	async execute(interaction) {
+        let userQuery = {'id': interaction.user.id.toString()};
+        let userData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne(userQuery);
+        if (!userData){
+            await interaction.reply({ content: `You're not part of the family <@${interaction.user.id}>! Join us by using /join`, ephemeral: true });
+            return;
+        }
+
+        if (!userData.bought_starter) {
+            await interaction.reply({ content: `You haven't chosen your starter car <@${interaction.user.id}>! Use /starter to get your first car from the family.`, ephemeral: true });
+            return;
+        }
+
         let entry = interaction.options.getInteger('entry');
 
         const row = new MessageActionRow()
@@ -31,7 +43,20 @@ module.exports = {
                 if (entryListIds.includes(i.user.id)) {
                     i.reply({ content: 'You\'ve already joined this race!', ephemeral: true });
                 } else {
+                    let entrantQuery = {'id': i.user.id.toString()};
+                    let entrantData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne(entrantQuery);
+                    if (!entrantData.bought_starter) {
+                        await interaction.reply({ content: `You haven't chosen your starter car <@${i.user.id}>! Use /starter to get your first car from the family.`, ephemeral: true });
+                        return;
+                    }
+
+                    if (entrantData.bal < entry) {
+                        await interaction.reply(`Your current balance is ${entrantData.bal}, don't try to lie to the family about how much you have!`);
+                        return;
+                    }
+
                     entryListIds.push(i.user.id);
+                    
                     let prev = await interaction.fetchReply();
                     await interaction.editReply(prev.content + `\n${i.user.tag}\n`);
                     i.reply({ content: `You've joined ${interaction.user.id}'s race for ${entry} Coronas.'`, ephemeral: true });
