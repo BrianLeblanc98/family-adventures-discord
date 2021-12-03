@@ -37,7 +37,8 @@ module.exports = {
         
 		await interaction.reply({ content: "Which car do you want to start with?", components: [row], ephemeral: true});
 
-        const collector = await interaction.fetchReply().createMessageComponentCollector({ componentType: 'BUTTON', time: 15000 });
+        let message = await interaction.fetchReply();
+        const collector = message.createMessageComponentCollector({ componentType: 'BUTTON', time: 15000 });
 
         collector.on('collect', i => {
             if (i.user.id === interaction.user.id) {
