@@ -37,7 +37,7 @@ module.exports = {
                     .setLabel(`Join Race! (${entry} Coronas)`)
                     .setStyle('PRIMARY')
             )
-		await interaction.reply({ content: `<@${interaction.user.id}> Started a family race with an entry of ${entry} Coronas.\nStarts in 15 seconds\n\nEntries:`, components: [row] });
+		await interaction.reply({ content: `<@${interaction.user.id}> Started a family race with an entry of ${entry} Coronas.\nStarts in 10 seconds\n\nEntries:`, components: [row] });
 
         let entryListIds = [];
 
@@ -71,7 +71,21 @@ module.exports = {
         });
 
         collector.on('end', async () => {
-            interaction.editReply({ content: `<@${interaction.user.id}>'s ${entry} Corona race is over.`, components: [] });
+            await interaction.editReply({ content: `<@${interaction.user.id}>'s ${entry} Corona race is over.`, components: [] });
+
+            let message = '';
+            if (entryListIds.length <= 1) {
+                message = 'Not enough people showed up, you need at least 2 to race. The family is disappointed.';
+            } else {
+                let winnings = entry*entryListIds.length;
+                let winnerId = entryListIds[Math.floor(Math.random() * entryListIds.length)];
+                let winnerQuery = {'id': winnerId.toString()};
+                let winnerData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne(winnerQuery);
+
+                message = `<@${winnerData.id}> won the ${winnings} pot! They showed the family who's boss.`;
+            }
+
+            await interaction.followUp(message);
             ongoingRace = false;
         });
 	},
