@@ -42,7 +42,7 @@ module.exports = {
 
         collector.on('collect', async i => {
             if (i.user.id === interaction.user.id) {
-                interaction.editReply({ content: 'You\'ve made your choice', components: [] });
+                await interaction.editReply({ content: 'You\'ve made your choice', components: [] });
                 let carName = 'unknown';
                 if (i.customId == '325i'){
                     carName = '1990 BMW 325i'
@@ -52,6 +52,7 @@ module.exports = {
                     carName = '2002 Honda Civic Si'
                 }
                 i.reply(`<@${i.user.id}> chose the ${carName} as their starter car, welcome them to the family!`);
+                console.log(userData);
             } else {
                 i.reply({ content: `These buttons aren't for you!`, ephemeral: true });
             }
