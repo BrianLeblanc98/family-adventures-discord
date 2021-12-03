@@ -57,7 +57,7 @@ module.exports = {
                     }
 
                     if (entrantData.bal < entry) {
-                        await i.reply(`Your current balance is ${entrantData.bal}, don't try to lie to the family about how much you have!`);
+                        await i.reply({content: `Your current balance is ${entrantData.bal}, don't try to lie to the family about how much you have!`, ephemeral: true});
                         return;
                     }
 
