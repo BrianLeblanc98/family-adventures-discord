@@ -21,11 +21,16 @@ module.exports = {
             )
 		await interaction.reply({ content: `<@${interaction.user.id}> Started a family race with an entry of ${entry} Coronas.\nStarts in {x} seconds`, components: [row] });
 
+        let entryListIds = [interaction.user.id];
+
         let message = await interaction.fetchReply();
         const collector = message.createMessageComponentCollector({ componentType: 'BUTTON', time: 15000 });
 
         collector.on('collect', async i => {
             if (i.customId === 'join') {
+                if (entryListIds.includes(i.user.id)) {
+                    i.interaction.reply({ content: 'You\'ve already joined this race!', ephemeral: true });
+                }
                 interaction.followUp(`<@${i.user.id}> Joined the race`);
             }
         });
