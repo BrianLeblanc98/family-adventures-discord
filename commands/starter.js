@@ -36,7 +36,7 @@ module.exports = {
             );
         
         const filter = i => i.customId === '325i' && i.user.id === interaction.user.id;
-        const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
+        const collector = interaction.message.createMessageComponentCollector({ filter, time: 15000 });
         collector.on('collect', async i => {
             if (i.customId === '325i') {
                 await i.update({ content: '325i', components: [] });
