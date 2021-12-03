@@ -5,7 +5,7 @@ module.exports = {
 		.setName('leaderboard')
 		.setDescription('Show the family leaderboard'),
 	async execute(interaction) {
-        let result = await mongoClient.db('familyAdventuresDiscordDb').collection('users').find().sort({ 'bal': -1 });
+        let result = await mongoClient.db('familyAdventuresDiscordDb').collection('users').find().sort({ 'bal': -1 }).toArray();
         console.log(result);
 		await interaction.reply('');
 	},
