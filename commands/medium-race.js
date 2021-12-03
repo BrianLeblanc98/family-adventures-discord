@@ -6,7 +6,7 @@ module.exports = {
 		.setDescription('Make our family proud, and take out some kid with a lightly tuned car.')
         .addStringOption(option => 
             option.setName('bet')
-                .setDescription('How much you want to bet, you\'ll get 35% of what you bet as winnings. Between 100-2500')
+                .setDescription('How much you want to bet, you\'ll get 50% of what you bet as winnings. Between 100-2500')
                 .setRequired(true)),
 	async execute(interaction) {
         let userQuery = {'id': interaction.user.id.toString()};
@@ -23,7 +23,7 @@ module.exports = {
 
         let minBet = 100;
         let maxBet = 2500;
-        let payoutPercent = 0.35;
+        let payoutPercent = 0.50;
         let winPercent = 0.75;
 
         let betString = interaction.options.getString('bet');
