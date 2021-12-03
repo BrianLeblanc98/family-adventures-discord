@@ -37,18 +37,19 @@ module.exports = {
         
 		await interaction.reply({ content: "Which car do you want to start with?", components: [row], ephemeral: true});
 
-        const collector = interaction.fetchReply().createMessageComponentCollector({ componentType: 'BUTTON', time: 15000 });
+        console.log(await interaction.fetchReply());
+        // const collector = interaction.fetchReply().createMessageComponentCollector({ componentType: 'BUTTON', time: 15000 });
 
-        collector.on('collect', i => {
-            if (i.user.id === interaction.user.id) {
-                i.followUp(`${i.user.id} clicked on the ${i.customId} button.`);
-            } else {
-                i.followUp({ content: `These buttons aren't for you!`, ephemeral: true });
-            }
-        });
+        // collector.on('collect', i => {
+        //     if (i.user.id === interaction.user.id) {
+        //         i.followUp(`${i.user.id} clicked on the ${i.customId} button.`);
+        //     } else {
+        //         i.followUp({ content: `These buttons aren't for you!`, ephemeral: true });
+        //     }
+        // });
 
-        collector.on('end', collected => {
-            console.log(`Collected ${collected.size} interactions.`);
-        });
+        // collector.on('end', collected => {
+        //     console.log(`Collected ${collected.size} interactions.`);
+        // });
 	},
 };
