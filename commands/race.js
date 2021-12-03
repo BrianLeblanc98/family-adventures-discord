@@ -31,7 +31,7 @@ module.exports = {
         });
 
         collector.on('end', async () => {
-            interaction.editReply('Race over');
+            interaction.editReply({ content: `<@${interaction.user.id}>'s ${entry} Corona race is over.`, components: [] });
         });
 	},
 };
