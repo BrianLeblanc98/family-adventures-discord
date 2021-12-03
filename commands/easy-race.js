@@ -25,7 +25,7 @@ module.exports = {
 
         if (Math.random() < 0.9) {
             // WIN
-            let winnings = Math.floor(bet * 0.1);
+            let winnings = Math.floor(bet * 0.5);
             userJson.bal += winnings;
 
             await interaction.reply(`You won for the family! Congrats on your ${winnings} Corona win!`);
