@@ -36,8 +36,8 @@ module.exports = {
             );
         
         let message = { content: "Which car do you want to start with?", components: [row], ephemeral: true};
-        
-        const collector = interaction.createMessageComponentCollector({ componentType: 'BUTTON', time: 15000 });
+
+        const collector = message.createMessageComponentCollector({ componentType: 'BUTTON', time: 15000 });
 
         collector.on('collect', i => {
             if (i.user.id === interaction.user.id) {
