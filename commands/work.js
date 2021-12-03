@@ -8,7 +8,7 @@ module.exports = {
 	async execute(interaction) {
         let query = {'id': interaction.user.id.toString()};
         let userData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne(query);
-        if (userData){
+        if (!userData){
             await interaction.reply(`You're not part of the family <@${interaction.user.id}>! Join us by using /join`);
             return;
         }

@@ -7,7 +7,7 @@ module.exports = {
 		.setDescription('Shows your cuurent balance of Coronas, the currency in this family.'),
 	async execute(interaction) {
         let userData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne({'id': interaction.user.id.toString()})
-        if (userData){
+        if (!userData){
             await interaction.reply(`You're not part of the family <@${interaction.user.id}>! Join us by using /join`);
             return;
         }
