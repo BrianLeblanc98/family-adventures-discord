@@ -19,9 +19,9 @@ module.exports = {
                     .setLabel(`Join Race! (${entry} Coronas)`)
                     .setStyle('PRIMARY')
             )
-		await interaction.reply({ content: `<@${interaction.user.id}> Started a family race with an entry of ${entry} Coronas.\nStarts in {x} seconds`, components: [row] });
+		await interaction.reply({ content: `<@${interaction.user.id}> Started a family race with an entry of ${entry} Coronas.\nStarts in 15 seconds\n\nEntries:\n`, components: [row] });
 
-        let entryListIds = [interaction.user.id];
+        let entryListIds = [];
 
         let message = await interaction.fetchReply();
         const collector = message.createMessageComponentCollector({ componentType: 'BUTTON', time: 15000 });
@@ -30,8 +30,10 @@ module.exports = {
             if (i.customId === 'join') {
                 if (entryListIds.includes(i.user.id)) {
                     i.reply({ content: 'You\'ve already joined this race!', ephemeral: true });
+                } else {
+                    let prev = interaction.fetchReply();
+                    interaction.editReply(prev + `${i.tag}\n`);
                 }
-                interaction.followUp(`<@${i.user.id}> Joined the race`);
             }
         });
 
