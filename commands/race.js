@@ -82,7 +82,22 @@ module.exports = {
                 let winnerQuery = {'id': winnerId.toString()};
                 let winnerData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne(winnerQuery);
 
-                message = `<@${winnerData.id}> won the ${winnings} pot! They showed the family who's boss.`;
+                message = `<@${winnerData.id}> won the ${winnings} Corona pot! They showed the family who's boss.`;
+
+                let newBal = winnerData.bal + winnings - entry;
+                let update = { $set: { 'bal': newBal } };
+                await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(winnerQuery, update);
+
+                for (entrantId of entryListIds) {
+                    if (entrantId == winnerId) continue;
+
+                    let loserQuery = {'id': entrantId.toString()};
+                    let loserData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne(loserQuery);
+                    
+                    newBal = loserData.bal - entry;
+                    update = { $set: { 'bal': newBal } };
+                    await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(loserQuery, update);
+                }
             }
 
             await interaction.followUp(message);
