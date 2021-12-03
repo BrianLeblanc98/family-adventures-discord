@@ -17,14 +17,14 @@ module.exports = {
 			'/store': 'Look at and buy many things from the family store, using Corona as a currency!'
 		};
 		let keys = Object.keys(help);
-		let commands = [];
-		let descriptions = [];
+		let commands = '';
+		let descriptions = '';
 		for (let key of keys) {
-			commands.push(key);
-			descriptions.push(help[key]);
+			commands += `${keys}\n`;
+			descriptions += `${help[key]}\n`
 		}
 		const embed = new MessageEmbed()
-            .setTitle('Leaderboard')
+            .setTitle('Help')
             .addFields(
                 { name: 'Command', value: commands, inline: true },
                 { name: 'Description', value: descriptions, inline: true },
