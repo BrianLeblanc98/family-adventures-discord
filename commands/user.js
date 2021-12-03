@@ -19,7 +19,7 @@ module.exports = {
 
         let userDataFields = [
             { name: 'Current car', value: carName },
-            { name: 'Balance of Coronas', value: userData.bal },
+            { name: 'Balance of Coronas', value: `${userData.bal}` },
         ]
 
         const embed = new MessageEmbed()
