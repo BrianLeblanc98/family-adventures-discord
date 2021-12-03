@@ -10,8 +10,8 @@ module.exports = {
                 .setDescription('How much you want to bet, you\'ll get 50% of what you bet as winnings. You can also bet all')
                 .setRequired(true)),
 	async execute(interaction) {
-        let query = {'id': interaction.user.id.toString()};
-        let userData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne(query);
+        let userQuery = {'id': interaction.user.id.toString()};
+        let userData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne(userQuery);
         if (!userData){
             await interaction.reply({ content: `You're not part of the family <@${interaction.user.id}>! Join us by using /join`, ephemeral: true });
             return;
@@ -40,19 +40,22 @@ module.exports = {
         }
 
         let newBal;
+        let carQuery = { '_id': userData.current_car_id };
+        let carData = await mongoClient.db('familyAdventuresDiscordDb').collection('cars').findOne(carQuery);
+        let carName = `${carData.year} ${carData.manufacturor} ${carData.name}`;
         if (Math.random() < 0.9) {
             // WIN
             let winnings = Math.floor(bet * 0.5);
             newBal = userData.bal + winnings;
 
-            await interaction.reply(`<@${interaction.user.id}> won for the family! Congrats on their ${winnings} Corona win!`);
+            await interaction.reply(`<@${interaction.user.id}> clapped some cheeks with their ${carName}! Congrats on their ${winnings} Corona win!`);
         } else {
             // LOSE
             newBal = userData.bal - bet;
-            await interaction.reply(`<@${interaction.user.id}> lost a ${bet} Corona bet, bringing shame on the family.`);
+            await interaction.reply(`<@${interaction.user.id}> lost a ${bet} Corona bet in their ${carName}, bringing shame on the family.`);
         }
 
         let update = { $set: { 'bal': newBal } };
-        await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(query, update);
+        await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(userQuery, update);
 	},
 };
