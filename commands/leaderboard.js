@@ -15,13 +15,11 @@ module.exports = {
 		//await interaction.reply(output);
 
         const exampleEmbed = new MessageEmbed()
-            .setColor('#0099ff')
             .setTitle('Leaderboard')
             .addFields(
-                { name: 'Inline field title', value: 'Some value here', inline: true },
-                { name: 'Inline field title', value: 'Some value here', inline: true },
+                { name: 'Username', value: 'IAintToxicLul\nKataluo', inline: true },
+                { name: 'Inline field title', value: '50\n100000', inline: true },
             )
-            // .addField('Inline field title', 'Some value here', true)
             .setTimestamp();
         await interaction.reply({ embeds: [ exampleEmbed ] });
 	},
