@@ -55,7 +55,7 @@ module.exports = {
         let carName = `${carData.year} ${carData.manufacturer} ${carData.name}`;
         if (Math.random() < winPercent) {
             // WIN
-            let winnings = Math.floor(bet * payoutPercent);
+            let winnings = Math.ceil(bet * payoutPercent);
             newBal = userData.bal + winnings;
 
             await interaction.reply(`<@${interaction.user.id}> clapped some cheeks with their ${carName}! Congrats on their ${winnings} Corona win!`);
