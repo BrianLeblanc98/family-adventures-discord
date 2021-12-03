@@ -25,11 +25,11 @@ module.exports = {
                     .setLabel('1990 BMW 325i')
                     .setStyle('PRIMARY'),
                 new MessageButton()
-                    .setCustomId('mustang')
+                    .setCustomId('Mustang')
                     .setLabel('1994 Ford Mustang')
                     .setStyle('PRIMARY'),
                 new MessageButton()
-                    .setCustomId('civic')
+                    .setCustomId('Civic Si')
                     .setLabel('2002 Honda Civic Si')
                     .setStyle('PRIMARY')
                 

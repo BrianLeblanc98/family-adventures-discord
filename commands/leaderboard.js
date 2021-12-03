@@ -15,6 +15,7 @@ module.exports = {
             bals += `${user.bal}\n`
         }
 
+        // Looks bad on mobile, maybe fix?
         const embed = new MessageEmbed()
             .setTitle('Leaderboard')
             .addFields(
