@@ -14,6 +14,7 @@ module.exports = {
         let newUser = {
             "id": interaction.user.id,
             "name": interaction.user.username,
+            "bought_starter": false,
             "bal": 0,
             "current_car_id": "000",
             "cars": [],
@@ -28,7 +29,7 @@ module.exports = {
         for (car of cars) {
             console.log(car);
         }
-        await interaction.reply(`Welcome to the family <@${interaction.user.id}>! Start doing some /work, then you can move onto /easy-race!`);
+        await interaction.reply(`Welcome to the family <@${interaction.user.id}>! Choose your first car with /starter!`);
 
 	},
 };
