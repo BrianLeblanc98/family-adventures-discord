@@ -43,7 +43,7 @@ module.exports = {
         collector.on('collect', async i => {
             if (i.user.id === interaction.user.id) {
                 await i.deleteReply();
-                i.followUp(`${i.user.id} chose the ${i.label} as their starter car, welcome them to the family!`);
+                i.followUp(`${i.user.id} chose the ${i.customId.label} button.`);
             } else {
                 i.followUp({ content: `These buttons aren't for you!`, ephemeral: true });
             }
