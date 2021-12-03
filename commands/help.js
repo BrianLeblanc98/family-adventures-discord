@@ -19,8 +19,8 @@ module.exports = {
 		let commands = [];
 		let descriptions = [];
 		for (let key of keys) {
-			commands.append(key);
-			descriptions.append(help[key]);
+			commands.push(key);
+			descriptions.push(help[key]);
 		}
 		const embed = new MessageEmbed()
             .setTitle('Leaderboard')
