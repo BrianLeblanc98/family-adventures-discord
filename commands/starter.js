@@ -35,7 +35,7 @@ module.exports = {
                 
             );
         
-		await interaction.reply({ content: "Which car do you want to start with?", components: [row], ephemeral: true});
+		let message = await interaction.reply({ content: "Which car do you want to start with?", components: [row], ephemeral: true});
 
         const collector = message.createMessageComponentCollector({ componentType: 'BUTTON', time: 15000 });
 
