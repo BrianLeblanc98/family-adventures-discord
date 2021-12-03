@@ -7,7 +7,7 @@ module.exports = {
 		.setDescription('Join the family, get your first car, and get ready to race!'),
 	async execute(interaction) {
         if (await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne({'id': interaction.user.id.toString()})){
-            await interaction.reply(`You're already part of the family <@${interaction.user.id}>!`);
+            await interaction.reply({ content: `You're already part of the family <@${interaction.user.id}>!`, ephemeral: true });
             return;
         }
 

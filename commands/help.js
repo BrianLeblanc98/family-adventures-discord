@@ -5,6 +5,6 @@ module.exports = {
 		.setName('help')
 		.setDescription('Display help information for the family'),
 	async execute(interaction) {
-		await interaction.reply('Get started on this wild family adventure by using /join');
+		await interaction.reply({ content: 'Get started on this wild family adventure by using /join', ephemeral: true});
 	},
 };

@@ -13,12 +13,12 @@ module.exports = {
         let query = {'id': interaction.user.id.toString()};
         let userData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne(query);
         if (!userData){
-            await interaction.reply(`You're not part of the family <@${interaction.user.id}>! Join us by using /join`);
+            await interaction.reply({ content: `You're not part of the family <@${interaction.user.id}>! Join us by using /join`, ephemeral: true });
             return;
         }
 
         if (!userData.bought_starter) {
-            await interaction.reply(`You haven't chosen your starter car <@${interaction.user.id}>! Use /starter to get your first car from the family.`);
+            await interaction.reply({ content: `You haven't chosen your starter car <@${interaction.user.id}>! Use /starter to get your first car from the family.`, ephemeral: true });
             return;
         }
 
