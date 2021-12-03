@@ -37,12 +37,18 @@ module.exports = {
         
 		await interaction.reply({ content: "Which car do you want to start with?", components: [row], ephemeral: true});
 
-        const filter = i => i.customId === '325i' && i.user.id === interaction.user.id;
-        const collector = interaction.message.createMessageComponentCollector({ filter, time: 15000 });
-        collector.on('collect', async i => {
-            if (i.customId === '325i') {
-                await i.update({ content: '325i', components: [] });
+        const collector = message.createMessageComponentCollector({ componentType: 'BUTTON', time: 15000 });
+
+        collector.on('collect', i => {
+            if (i.user.id === interaction.user.id) {
+                i.reply(`${i.user.id} clicked on the ${i.customId} button.`);
+            } else {
+                i.reply({ content: `These buttons aren't for you!`, ephemeral: true });
             }
+        });
+
+        collector.on('end', collected => {
+            console.log(`Collected ${collected.size} interactions.`);
         });
 	},
 };
