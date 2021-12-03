@@ -10,6 +10,7 @@ module.exports = {
 			{ name: '/help', value: 'Display help information for the family.' },
 			{ name: '/join', value: 'Join the family, get your first car, and get ready to race!' },
 			{ name: '/work', value: 'Do some small work for the family, and get a small amount of Corona in return.' },
+			{ name: '/race', value: 'Set an entry fee, and anyone can join this winner-takes-all family race!' },
 			{ name: '/easy-race', value: 'Make our family proud, and take out some poser who thinks their car is fast.' },
 			{ name: '/bal', value: 'Shows your cuurent balance of Coronas, the currency in this family.' },
 			{ name: '/leaderboard', value: 'Show the family leaderboard.' },
