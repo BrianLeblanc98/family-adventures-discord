@@ -19,7 +19,7 @@ module.exports = {
                     .setLabel(`Join Race! (${entry} Coronas)`)
                     .setStyle('PRIMARY')
             )
-		await interaction.reply({ content: `<@${interaction.user.id}> Started a family race with an entry of ${entry} Coronas.\nStarts in 15 seconds\n\nEntries:\n`, components: [row] });
+		await interaction.reply({ content: `<@${interaction.user.id}> Started a family race with an entry of ${entry} Coronas.\nStarts in 15 seconds\n\nEntries:`, components: [row] });
 
         let entryListIds = [];
 
@@ -32,7 +32,7 @@ module.exports = {
                     i.reply({ content: 'You\'ve already joined this race!', ephemeral: true });
                 } else {
                     let prev = await interaction.fetchReply();
-                    await interaction.editReply(prev.content + `${i.tag}\n`);
+                    await interaction.editReply(prev.content + `\n${i.user.tag}\n`);
                 }
             }
         });
