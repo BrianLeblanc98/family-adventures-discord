@@ -50,10 +50,7 @@ client.on('interactionCreate', async interaction => {
 // Button listener
 client.on('interactionCreate', async interaction => {
     if(!interaction.isButton()) return;
-
-    interaction.reply(`<@${interaction.user.id}> pressed ${interaction.customId}`);
-    // interaction.customId
-    // interaction.user.tag
+    console.log('button');
 });
 
 client.login(token);
