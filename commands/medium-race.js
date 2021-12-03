@@ -57,7 +57,7 @@ module.exports = {
             let winnings = Math.ceil(bet * payoutPercent);
             newBal = userData.bal + winnings;
 
-            await interaction.reply(`<@${interaction.user.id}> decimated some kid ${carName}! Congrats on their ${winnings} Corona win!`);
+            await interaction.reply(`<@${interaction.user.id}> decimated some kid with their ${carName}! Congrats on their ${winnings} Corona win!`);
         } else {
             // LOSE
             newBal = userData.bal - bet;
