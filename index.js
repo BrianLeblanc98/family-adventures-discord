@@ -15,7 +15,7 @@ async function mongoConnect() {
     try {
         await mongoClient.connect();
     
-        await client.db('""').command({ping: 1});
+        await mongoClient.db('').command({ping: 1});
         console.log('connected to mongodb')
     } finally {
         
