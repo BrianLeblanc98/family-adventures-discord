@@ -18,7 +18,7 @@ module.exports = {
         const embed = new MessageEmbed()
             .setTitle('Leaderboard')
             .addFields(
-                { name: 'Username', value: usernames, inline: true },
+                { name: 'Name', value: usernames, inline: true },
                 { name: 'Coronas', value: bals, inline: true },
             )
             .setTimestamp();
