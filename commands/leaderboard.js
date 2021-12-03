@@ -8,17 +8,18 @@ module.exports = {
 	async execute(interaction) {
         let result = await mongoClient.db('familyAdventuresDiscordDb').collection('users').find().sort({ 'bal': -1 }).toArray();
         
-        let output = "Current leaderboard\n";
+        let usernames = '';
+        let bals = '';
         for (user of result) {
-            output += `${user.name}: ${user.bal}\n`
+            usernames += `${user.name}\n`;
+            bals += `${user.bal}\n`
         }
-		//await interaction.reply(output);
 
         const exampleEmbed = new MessageEmbed()
             .setTitle('Leaderboard')
             .addFields(
-                { name: 'Username', value: 'IAintToxicLulkjlhakjsdfhgjkasdhfkjashdkjasdhfkj\nKataluo', inline: true },
-                { name: 'Coronas', value: '50\n10000000000000000000000000000000000000000000', inline: true },
+                { name: 'Username', value: usernames, inline: true },
+                { name: 'Coronas', value: bals, inline: true },
             )
             .setTimestamp();
         await interaction.reply({ embeds: [ exampleEmbed ] });
