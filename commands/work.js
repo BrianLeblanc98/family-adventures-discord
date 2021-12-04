@@ -1,12 +1,10 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { }
 const db = require('../util/db.js');
 const replys = require('../util/replys.js');
 
 const NAME = 'work';
 const DESCRIPTION = 'Do some small work for the family, and get a small amount of Corona in return.';
 const WORK_PAY = 5;
-
 
 module.exports = {
     name: NAME,
