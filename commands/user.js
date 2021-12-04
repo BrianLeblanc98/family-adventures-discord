@@ -27,6 +27,6 @@ module.exports = {
             .setImage(`${carData.imgUrl}`)
 			.addFields(userDataFields)
             .setTimestamp();
-		await interaction.reply({ embeds: [ embed ], ephemeral: true});
+		await interaction.reply({ embeds: [ embed ] });
 	},
 };
