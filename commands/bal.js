@@ -1,17 +1,22 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const fs = require('fs');
+const db = require('../util/db.js');
+const replys = require('../util/replys.js');
+
+const NAME = 'bal';
+const DESCRIPTION = 'Shows your cuurent balance of Coronas, the currency in this family.';
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('bal')
-		.setDescription('Shows your cuurent balance of Coronas, the currency in this family.'),
+		.setName(NAME)
+		.setDescription(DESCRIPTION),
 	async execute(interaction) {
-        let userData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne({'id': interaction.user.id.toString()})
-        if (!userData){
-            await interaction.reply({ content: `You're not part of the family <@${interaction.user.id}>! Join us by using /join`, ephemeral: true });
+        let userData = await db.getUser(interaction.user.id.toString());
+        let userInFamily = await db.inFamily(userData);
+        if (!userInFamily) {
+            await interaction.reply(replys.notInFamily(interaction));
             return;
         }
 
-        await interaction.reply(`Your current balance is ${userData.bal} Coronas`);
+        await interaction.reply(replys.showBal(userData.bal));
 	},
 };
