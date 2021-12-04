@@ -24,10 +24,8 @@ module.exports = {
                     .setDisabled(true)
             );
 
-        const embed = new MessageEmbed()
-            .setTitle('Shop')
-            .addField({ name: 'Welcome to the shop, what do you want to buy?', value: 'asdf'})
-            .setTimestamp();
+        const embed = new MessageEmbed().setTitle('Shop').setTimestamp();
+        // .addField({ name: 'Welcome to the shop, what do you want to buy?', value: 'asdf'})
 
 		await interaction.reply({ content: "What do you want to shop for?", embeds: [embed], components: [row], ephemeral: true });
 
