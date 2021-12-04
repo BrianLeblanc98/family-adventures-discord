@@ -34,7 +34,7 @@ module.exports = {
                 if (i.customId == 'shopCars'){
                     let carsQuery = { 'starter': false }
                     let carsData = await mongoClient.db('familyAdventuresDiscordDb').collection('cars').find(carsQuery);
-                    let carsData = await carsData.toArray();
+                    carsData = await carsData.toArray();
                     console.log(carsData);
                 } else if (i.customId == 'shopItems') {
                     await i.reply('Not implemented yet');
