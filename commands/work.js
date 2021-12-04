@@ -17,7 +17,7 @@ module.exports = {
 
         let result = await db.addBal(userData, WORK_PAY);
         console.log(result);
-		await interaction.reply(`Small family work done, added ${workPay} Coronas to your balance. Current balance: ${newBal} Coronas`);
+		await interaction.reply(`Small family work done, added ${WORK_PAY} Coronas to your balance. Current balance: - Coronas`);
 	},
 };
 
