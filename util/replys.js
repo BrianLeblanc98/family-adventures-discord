@@ -16,5 +16,15 @@ module.exports = {
     },
     overBalBet(bal, bet) {
         return `Your current balance is ${bal} and you want to bet ${bet}? Don't try to lie to the family about how much you have!`;
+    },
+    basicRaceWin(raceName, interaction, carName, winnings, newBal) {
+        if (raceName == 'easy-race') {
+            return `<@${interaction.user.id}> won an easy race!\n They clapped some cheeks in their ${carName}!\n Congrats on their ${winnings} Corona win! They now have ${newBal}.`
+        }
+    },
+    basicRaceLose(raceName, interaction, carName, bet, newBal) {
+        if (raceName == 'easy-race') {
+            return `<@${interaction.user.id}> lost an easy race.\n They got clapped in their ${carName}, losing a ${bet} Corona bet, bringing shame on the family. They now have ${newBal}.`
+        }
     }
 }

@@ -68,14 +68,12 @@ module.exports = {
             let winnings = Math.ceil(bet * income[NAME].payoutPercent);
             let newBal = await db.addBal(userData, winnings);
 
-            await interaction.reply(`<@${interaction.user.id}> clapped some cheeks with their ${carName}! Congrats on their ${winnings} Corona win!`);
+            await interaction.reply(replys.basicRaceWin(NAME, interaction, carName, winnings, newBal));
         } else {
             // LOSE
             let newBal = await db.removeBal(userData, bet);
-            await interaction.reply(`<@${interaction.user.id}> lost a ${bet} Corona bet in their ${carName}, bringing shame on the family.`);
+            
+            await interaction.reply(replys.basicRaceLose(NAME, interaction, carName, bet, newBal));
         }
-
-        // let update = { $set: { 'bal': newBal } };
-        // await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(userQuery, update);
 	},
 };
