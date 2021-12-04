@@ -106,9 +106,8 @@ module.exports = {
                     let carName = `${carData.year} ${carData.manufacturer} ${carData.name}`;
 
                     await interaction.editReply({ content: 'Shop closed', embeds: [], components: [], ephemeral: true });
-                    console.log(userData)
-                    console.log(userData.cars.includes(carData))
-                    console.log(carData in userData.carscarData)
+                    console.log(userData.cars)
+                    console.log(carData)
                     // if (userData.cars.includes(carData)) {
                     //     await i.reply({ content: `You already own a ${carName}!`, embeds: [], components: [], ephemeral: true });
                     // } else if (userData.bal < carData.cost) {
