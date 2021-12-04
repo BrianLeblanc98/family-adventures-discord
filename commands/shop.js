@@ -65,7 +65,7 @@ module.exports = {
                         .addComponents(
                             new MessageSelectMenu()
                                 .setCustomId('carToBuy')
-                                .setPlaceholder('No car selected')
+                                .setPlaceholder('SELECT AND BUY THE CAR')
                                 .addOptions(newRowOptions),
                         );
                     await interaction.editReply({ content: 'Here are the cars we have right now:', embeds: [newEmbed], components: [newRow], ephemeral: true });
@@ -87,7 +87,10 @@ module.exports = {
         selectMenuCollector.on('collect', async i => {
             if (i.user.id === interaction.user.id) {
                 if (i.customId == 'carToBuy') {
-                    console.log(i.values);
+                    let carId = i.values[0];
+                    let carQuery = { '_id' : carId };
+                    let carData = await mongoClient.db('familyAdventuresDiscordDb').collection('cars').findOne(carQuery);
+                    console.log(carData);
                 }
             } else {
                 i.reply({ content: `These menus aren't for you!`, ephemeral: true });
