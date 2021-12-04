@@ -5,7 +5,7 @@ const income = require('../util/income.json');
 
 const NAME = 'easy-race';
 const DESCRIPTION = 'Make our family proud, and take out some poser who thinks their car is fast.';
-const OPTION_DESCRIPTION = `Bet ${income['easy-race'].minBet}-${income['easy-race'].maxBet} Coronas, you\'ll get ${income['easy-race'].winPercent * 100}% back if you win.`;
+const OPTION_DESCRIPTION = `Bet ${income['easy-race'].minBet}-${income['easy-race'].maxBet} Coronas, you\'ll get ${income['easy-race'].payoutPercent * 100}% back if you win.`;
 
 module.exports = {
     name: NAME,
