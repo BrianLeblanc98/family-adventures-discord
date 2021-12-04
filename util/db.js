@@ -45,7 +45,12 @@ module.exports = {
         return newBal;
     },
     async getCar(id) {
-
+        let carQuery = { '_id': id };
+        let carData = await mongoClient.db('familyAdventuresDiscordDb').collection('cars').findOne(carQuery);
+        return carData;
+    },
+    getFullCarName(carData) {
+        return `${carData.year} ${carData.manufacturer} ${carData.name}`;
     },
     async getShopCars() {
         

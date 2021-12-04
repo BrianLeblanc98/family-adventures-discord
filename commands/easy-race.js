@@ -31,12 +31,7 @@ module.exports = {
             await interaction.reply(replys.notBoughtStarter(interaction));
             return;
         }
-
-        let minBet = 10;
-        let maxBet = 250;
-        let payoutPercent = 0.20;
-        let winPercent = 0.95;
-
+        
         let betString = interaction.options.getString('bet');
         let bet = 0;
         if (betString === 'all' || betString == 'max') {
@@ -55,14 +50,13 @@ module.exports = {
         } else if (bet > userData.bal) {
             await interaction.reply(replys.overBalBet(userData.bal, bet));
             return;
-        } else if (bet > maxBet) {
-            bet = maxBet;
+        } else if (bet > income[NAME].maxBet) {
+            bet = income[NAME].maxBet;
         }
 
-        let newBal;
-        let carQuery = { '_id': userData.current_car_id };
-        let carData = await mongoClient.db('familyAdventuresDiscordDb').collection('cars').findOne(carQuery);
-        let carName = `${carData.year} ${carData.manufacturer} ${carData.name}`;
+        let carData = await db.getCar(userData.current_car_id);
+        let carName = db.getFullCarName(carData);
+
         if (Math.random() < income[NAME].winPercent) {
             // WIN
             let winnings = Math.ceil(bet * income[NAME].payoutPercent);
