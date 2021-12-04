@@ -20,12 +20,13 @@ module.exports = {
 	async execute(interaction) {
         let userData = await db.getUser(interaction.user.id.toString());
         let userInFamily = await db.inFamily(userData);
-        let userBoughtStarter = await db.hasStarter(userData);
 
         if (!userInFamily){
             await interaction.reply(replys.notInFamily(interaction));
             return;
         }
+
+        let userBoughtStarter = await db.hasStarter(userData);
 
         if (!userBoughtStarter) {
             await interaction.reply(replys.notBoughtStarter(interaction));
