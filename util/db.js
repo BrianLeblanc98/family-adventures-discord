@@ -63,6 +63,3 @@ module.exports = {
         
     }
 };
-
-// let carsQuery = { 'starter' : { $exists: false } };
-// let carsData = await mongoClient.db('familyAdventuresDiscordDb').collection('cars').find(carsQuery).sort({ 'cost': 1 });

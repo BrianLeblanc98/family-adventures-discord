@@ -11,13 +11,25 @@
     "medium-race": {
         "minBet": 100,
         "maxBet": 2500,
-        "payoutPercent": 0.5,
+        "payoutPercent": 0.4,
+        "winPercent": 0.85
+    },
+    "hard-race": {
+        "minBet": 1000,
+        "maxBet": 25000,
+        "payoutPercent": 0.6,
         "winPercent": 0.75
+    },
+    "extreme-race": {
+        "minBet": 10000,
+        "maxBet": 250000,
+        "payoutPercent": 0.8,
+        "winPercent": 0.65
     },
     "uber-race": {
         "minBet": 100000,
-        "maxBet": 250000,
-        "payoutPercent": 1.1,
+        "maxBet": 2500000,
+        "payoutPercent": 1,
         "winPercent": 0.55
     }
 }

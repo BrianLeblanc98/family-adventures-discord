@@ -36,21 +36,29 @@ module.exports = {
     basicRaceWin(raceName, interaction, carName, bet, winnings, newBal) {
         let ending = `\nCongrats on their ${winnings} Corona win! They now have ${newBal} Corona.`;
         if (raceName == 'easy-race') {
-            return `<@${interaction.user.id}> won an easy race betting ${bet} Corona!\nThey clapped some cheeks in their ${carName}, showing that the family easily prevails!${ending}`
+            return `<@${interaction.user.id}> won an easy race betting ${bet} Corona!\nThey clapped some cheeks in their ${carName}, showing that the family easily prevails!${ending}`;
         } else if (raceName == 'medium-race') {
-            return `<@${interaction.user.id}> won a medium race betting ${bet} Corona!\nThey destroyed some kid in their ${carName}, showing that the family can still fight!${ending}`
+            return `<@${interaction.user.id}> won a medium race betting ${bet} Corona!\nThey destroyed some kid in their ${carName}, showing that the family can still fight!${ending}`;
+        } else if (raceName == 'hard-race') {
+            return `<@${interaction.user.id}> won a hard race betting ${bet} Corona!\nThey annihilated some guy in their ${carName}, showing that the family hits hard!${ending}`;
+        } else if (raceName == 'extreme-race') {
+            return `<@${interaction.user.id}> won an extreme race betting ${bet} Corona!\nThey decimated some guy in their ${carName}, showing that the family always strikes the hardest!${ending}`;
         } else if (raceName == 'uber-race') {
-            return `<@${interaction.user.id}> won an uber race betting ${bet} Corona!\nThey completely desolated some racer in their ${carName}, showing that the family will never hold back!${ending}`
+            return `<@${interaction.user.id}> won an uber race betting ${bet} Corona!\nThey completely desolated some racer in their ${carName}, showing that the family will never hold back!${ending}`;
         }
     },
     basicRaceLose(raceName, interaction, carName, bet, newBal) {
         let ending = `\nThey lost their ${bet} Corona bet. They now have ${newBal} Corona.`;
         if (raceName == 'easy-race') {
-            return `<@${interaction.user.id}> lost an easy race betting ${bet} Corona.\nThey got clapped in their ${carName}, bringing incredible shame on the family.${ending}`
+            return `<@${interaction.user.id}> lost an easy race betting ${bet} Corona.\nThey got desolated in their ${carName}, bringing incredible shame on the family.${ending}`;
         } else if (raceName == 'medium-race') {
-            return `<@${interaction.user.id}> lost a medium race betting ${bet} Corona.\nThey got destroyed in their ${carName}, bringing shame on the family.${ending}`
+            return `<@${interaction.user.id}> lost a medium race betting ${bet} Corona.\nThey got decimated in their ${carName}, bringing shame on the family.${ending}`;
+        } else if (raceName == 'hard-race') {
+            return `<@${interaction.user.id}> lost a hard race betting ${bet} Corona.\nThey got annihilated in their ${carName}, bringing some shame on the family.${ending}`;
+        } else if (raceName == 'extreme-race') {
+            return `<@${interaction.user.id}> lost an extreme race betting ${bet} Corona.\nThey got decimated in their ${carName}, a shame for the family, but it was a tough race.${ending}`;
         } else if (raceName == 'uber-race') {
-            return `<@${interaction.user.id}> lost an uber race betting ${bet} Corona.\nThey got completely desolated in their ${carName}, a shame, but it was a tough race.${ending}`
+            return `<@${interaction.user.id}> lost an uber race betting ${bet} Corona.\nThey got completely desolated in their ${carName}, a small shame for the family, but the opponent was very strong.${ending}`;
         }
     }
 }
