@@ -26,7 +26,7 @@ module.exports = {
         }
     },
     basicRaceLose(raceName, interaction, carName, bet, newBal) {
-        let ending = `They lost their ${bet} Corona bet. They now have ${newBal} Corona.`;
+        let ending = `\nThey lost their ${bet} Corona bet. They now have ${newBal} Corona.`;
         if (raceName == 'easy-race') {
             return `<@${interaction.user.id}> lost an easy race betting ${bet} Corona.\nThey got clapped in their ${carName}, bringing incredible shame on the family.${ending}`
         } else if (raceName == 'medium-race') {
