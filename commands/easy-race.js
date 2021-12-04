@@ -1,12 +1,21 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const db = require('../util/db.js');
+const replys = require('../util/replys.js');
+const income = require('../util/income.json');
+
+const NAME = 'easy-race';
+const DESCRIPTION = 'Make our family proud, and take out some poser who thinks their car is fast.';
+const OPTION_DESCRIPTION = `Bet ${income['easy-race'].minBet}-${income['easy-race'].maxBet} Coronas, you\'ll get ${income['easy-race'].winPercent * 100}% back if you win.`;
 
 module.exports = {
+    name: NAME,
+    description: DESCRIPTION,
 	data: new SlashCommandBuilder()
-		.setName('easy-race')
-		.setDescription('Make our family proud, and take out some poser who thinks their car is fast.')
+		.setName(NAME)
+		.setDescription(DESCRIPTION)
         .addStringOption(option => 
             option.setName('bet')
-                .setDescription('How much you want to bet, you\'ll get 20% of what you bet as winnings. Between 10-250')
+                .setDescription(OPTION_DESCRIPTION)
                 .setRequired(true)),
 	async execute(interaction) {
         let userQuery = {'id': interaction.user.id.toString()};

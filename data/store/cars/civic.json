@@ -3,5 +3,6 @@
     "manufacturer": "Honda",
     "year": "2002",
     "description": "",
+    "cost": 1000,
     "starter": true
 }
