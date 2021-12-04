@@ -24,7 +24,8 @@ module.exports = {
 
         const embed = new MessageEmbed()
             .setTitle('Shop')
-            .setDescription('What do you want to shop?')
+            .setDescription('What do you want to shop?');
+
 		await interaction.reply({ content: "What do you want to shop for?", embeds: [embed], components: [row], ephemeral: true });
 
         let message = await interaction.fetchReply();
