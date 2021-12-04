@@ -43,7 +43,7 @@ module.exports = {
                     let newDesc = '';
                     for (carData of carsData) {
                         carName = `${carData.year} ${carData.manufacturer} ${carData.name}`;
-                        message += `${carName}: ${carData.cost}\n`
+                        newDesc += `${carName}: ${carData.cost}\n`
                     }
 
                     let newEmbed = new MessageEmbed()
@@ -51,7 +51,7 @@ module.exports = {
                         .setDescription(newDesc)
                         .setTimestamp();
                     await interaction.editReply({ content: 'Here are the cars we have right now:', embeds: [newEmbed], components: [], ephemeral: true });
-                    
+
                 } else if (i.customId == 'shopItems') {
                     await i.reply('Not implemented yet');
                 } else if (i.customId == 'shopMods') {
