@@ -106,20 +106,23 @@ module.exports = {
                     let carName = `${carData.year} ${carData.manufacturer} ${carData.name}`;
 
                     await interaction.editReply({ content: 'Shop closed', embeds: [], components: [], ephemeral: true });
-                    if (userData.cars.includes(carData)) {
-                        await i.reply({ content: `You already own a ${carName}!`, embeds: [], components: [], ephemeral: true });
-                    } else if (userData.bal < carData.cost) {
-                        await i.reply({ content: `You cannot afford the ${carName}.`, embeds: [], components: [], ephemeral: true });
-                    } else {
-                        let newBal = userData.bal - carData.cost;
-                        let update = { $set: { 'bal': newBal, 'current_car_id': new ObjectId(carId) }, $push: { 'cars': carData } };
-                        await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(userQuery, update);
-                        const embed = new MessageEmbed()
-                            .setTitle(`${interaction.user.tag}'s New car`)
-                            .setImage(`${carData.imgUrl}`)
-                            .setTimestamp();
-                        await i.reply({ content: `<@${i.user.id}> just bought a new ${carName}! Check it out:`, embeds: [ embed ] });
-                    }
+                    console.log(userData)
+                    console.log(userData.cars.includes(carData))
+                    console.log(carData in userData.carscarData)
+                    // if (userData.cars.includes(carData)) {
+                    //     await i.reply({ content: `You already own a ${carName}!`, embeds: [], components: [], ephemeral: true });
+                    // } else if (userData.bal < carData.cost) {
+                    //     await i.reply({ content: `You cannot afford the ${carName}.`, embeds: [], components: [], ephemeral: true });
+                    // } else {
+                    //     let newBal = userData.bal - carData.cost;
+                    //     let update = { $set: { 'bal': newBal, 'current_car_id': new ObjectId(carId) }, $push: { 'cars': carData } };
+                    //     await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(userQuery, update);
+                    //     const embed = new MessageEmbed()
+                    //         .setTitle(`${interaction.user.tag}'s New car`)
+                    //         .setImage(`${carData.imgUrl}`)
+                    //         .setTimestamp();
+                    //     await i.reply({ content: `<@${i.user.id}> just bought a new ${carName}! Check it out:`, embeds: [ embed ] });
+                    // }
                 }
             } else {
                 i.reply({ content: `These menus aren't for you!`, ephemeral: true });
