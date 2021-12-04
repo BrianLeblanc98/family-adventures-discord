@@ -105,7 +105,7 @@ module.exports = {
                     let carData = await mongoClient.db('familyAdventuresDiscordDb').collection('cars').findOne(carQuery);
                     let carName = `${carData.year} ${carData.manufacturer} ${carData.name}`;
 
-                    await interaction.deleteReply({ content: 'Shop closed', embeds: [], components: [], ephemeral: true });
+                    await interaction.editReply({ content: 'Shop closed', embeds: [], components: [], ephemeral: true });
                     if (userData.bal < carData.cost) {
                         await i.reply({ content: `You cannot afford the ${carName}`, embeds: [], components: [], ephemeral: true });
                     } else {
