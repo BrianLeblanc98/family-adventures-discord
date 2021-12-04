@@ -1,9 +1,5 @@
 #!/usr/bin/env node
 const { token, mongoUri } = require('./config.json');
-const db = require('./util/db.js');
-
-db.temp1();
-db.temp2();
 
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
