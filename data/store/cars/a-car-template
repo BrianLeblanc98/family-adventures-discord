@@ -3,5 +3,6 @@
     "manufacturer": "",
     "year": "",
     "description": "",
-    "cost": 0
+    "cost": 0,
+    "imgUrl": ""
 }
