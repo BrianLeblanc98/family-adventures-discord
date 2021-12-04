@@ -3,8 +3,8 @@ const { MessageActionRow, MessageButton, Message, MessageEmbed, MessageSelectMen
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('store')
-		.setDescription('Browse many things from the family store, using Corona as a currency!'),
+		.setName('shop')
+		.setDescription('Browse many things from the family shop, using Corona as a currency!'),
 	async execute(interaction) {
         const row = new MessageActionRow()
             .addComponents(
@@ -26,7 +26,7 @@ module.exports = {
 
         const embed = new MessageEmbed()
             .setTitle('Shop')
-            .setDescription('The family store has everything from cars, random items, and car mods!')
+            .setDescription('The family shop has everything from cars, random items, and car mods!')
             .setTimestamp();
 
 		await interaction.reply({ content: 'What do you want to shop for?', embeds: [embed], components: [row], ephemeral: true });

@@ -54,4 +54,9 @@ client.on('interactionCreate', async interaction => {
     if(!interaction.isButton()) return;
 });
 
+// Select menu listener
+client.on('interactionCreate', interaction => {
+	if (!interaction.isSelectMenu()) return;
+});
+
 client.login(token);
