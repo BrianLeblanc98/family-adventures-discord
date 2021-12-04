@@ -14,6 +14,7 @@ module.exports = {
         let userData = await db.getUser(interaction.user.id.toString());
         if (!db.inFamily(userData)) {
             await interaction.reply(replys.notInFamily(interaction));
+            return;
         }
 
         let newBal = await db.addBal(userData, WORK_PAY);
