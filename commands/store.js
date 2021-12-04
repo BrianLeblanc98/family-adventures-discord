@@ -37,7 +37,7 @@ module.exports = {
             if (i.user.id === interaction.user.id) {
                 if (i.customId == 'shopCars'){
                     let carsQuery = { 'starter' : { $exists: false } };
-                    let carsData = await mongoClient.db('familyAdventuresDiscordDb').collection('cars').find(carsQuery);
+                    let carsData = await mongoClient.db('familyAdventuresDiscordDb').collection('cars').find(carsQuery).sort({ 'price': -1 });
                     carsData = await carsData.toArray();
 
                     let newDesc = '';

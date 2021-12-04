@@ -2,7 +2,7 @@
     "newCars": [
         {
             "name": "Mustang Fastback",
-            "manufacturer": "1967",
+            "manufacturer": "Ford",
             "year": "1967",
             "description": "You suspect that this car is a favourite of those with no soul.",
             "cost": 60000,
