@@ -1,16 +1,17 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
+const db = require('../util/db');
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('leaderboard')
 		.setDescription('Show the family leaderboard.'),
 	async execute(interaction) {
-        let result = await mongoClient.db('familyAdventuresDiscordDb').collection('users').find().sort({ 'bal': -1 }).toArray();
+        let usersData = await db.getUsersSorted();
         
         let usernames = '';
         let bals = '';
-        for (user of result) {
+        for (user of usersData) {
             usernames += `${user.name}\n`;
             bals += `${user.bal}\n`
         }

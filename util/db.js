@@ -22,6 +22,10 @@ module.exports = {
         let userData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne({ 'id': id });
         return userData;
     },
+    async getUsersSorted() {
+        let usersData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').find().sort({ 'bal': -1 }).toArray();
+        return usersData;
+    },
 	async inFamily(userData) {
         if (!userData) {
             return false;
