@@ -36,7 +36,7 @@ module.exports = {
         collector.on('collect', async i => {
             if (i.user.id === interaction.user.id) {
                 if (i.customId == 'shopCars'){
-                    let carsQuery = { 'starter': false }
+                    let carsQuery = { 'starter' : { $exists: false } };
                     let carsData = await mongoClient.db('familyAdventuresDiscordDb').collection('cars').find(carsQuery);
                     //carsData = await carsData.toArray();
                     console.log(carsData);
