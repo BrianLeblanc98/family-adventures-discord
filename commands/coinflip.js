@@ -12,15 +12,17 @@ module.exports = {
             return;
         }
 
+        let newBal = 0;
         if (Math.random < 0.5) {
             let winnings = userData.bal;
             newBal = userData.bal + winnings;
 
             await interaction.reply(`<@${interaction.user.id}> doubled their money! They now have ${newBal}.`);
         } else {
-            // LOSE
-            newBal = 0;
             await interaction.reply(`<@${interaction.user.id}> lost it all.`);
         }
+
+        let update = { $set: { 'bal': newBal } };
+        await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(userQuery, update);
 	},
 };
