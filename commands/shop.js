@@ -70,7 +70,7 @@ module.exports = {
                                 .addOptions(newRowOptions),
                         );
                     await interaction.editReply({ content: 'Here are the cars we have right now:', embeds: [newEmbed], components: [newRow], ephemeral: true });
-
+                    i.deferUpdate();
                 } else if (i.customId == 'shopItems') {
                     await i.reply('Not implemented yet');
                 } else if (i.customId == 'shopMods') {
