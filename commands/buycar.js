@@ -8,7 +8,7 @@ module.exports = {
             option.setName('car')
 				.setDescription('The car you\'d like to purchase')
 				.setRequired(true)
-                .addChoices([{name: 'carNameA', value: 'carValueA'},{name: 'carNameB', value: 'carValueB'}])),
+                .addChoices({name: 'carNameA', value: 'carValueA'}, {name: 'carNameB', value: 'carValueB'})),
 	async execute(interaction) {
 		await interaction.reply('re');
 	},
