@@ -1,0 +1,23 @@
+{
+    "work": {
+        "workPay": 5
+    },
+    "easy-race": {
+        "minBet": 10,
+        "maxBet": 250,
+        "payoutPercent": 0.2,
+        "winPercent": 0.95
+    },
+    "medium-race": {
+        "minBet": 100,
+        "maxBet": 2500,
+        "payoutPercent": 0.5,
+        "winPercent": 0.75
+    },
+    "uber-race": {
+        "minBet": 100000,
+        "maxBet": 250000,
+        "payoutPercent": 1.1,
+        "winPercent": 0.55
+    }
+}
