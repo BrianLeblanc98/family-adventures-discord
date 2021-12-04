@@ -44,7 +44,7 @@ module.exports = {
 
                     let newDesc = '';
                     let newRowOptions = [];
-                    for (carData of carsData) {
+                    for (let carData of carsData) {
                         let carName = `${carData.year} ${carData.manufacturer} ${carData.name}`;
                         newDesc += `${carName} -- ${carData.cost} Coronas\n`
 
@@ -87,7 +87,7 @@ module.exports = {
         selectMenuCollector.on('collect', async i => {
             if (i.user.id === interaction.user.id) {
                 if (i.customId == 'carToBuy') {
-                    console.log(i);
+                    console.log(i.value);
                 }
             } else {
                 i.reply({ content: `These menus aren't for you!`, ephemeral: true });
