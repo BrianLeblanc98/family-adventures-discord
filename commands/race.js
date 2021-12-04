@@ -26,13 +26,14 @@ module.exports = {
             await interaction.reply({ content: `There's a race already going on, wait for it to end before starting another!`, ephemeral: true });
             return;
         }
-        ongoingRace = true;
 
         let entry = interaction.options.getInteger('entry');
         if (entry <= 0) {
             await interaction.reply({ content: `Entries must be positive!`, ephemeral: true });
             return;
         }
+
+        ongoingRace = true;
 
         const row = new MessageActionRow()
             .addComponents(
