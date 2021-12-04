@@ -50,7 +50,8 @@ module.exports = {
                         .setTitle('Cars')
                         .setDescription(newDesc)
                         .setTimestamp();
-                    await interaction.editReply({ content: 'Here are the cars we have right now:', embeds: [embed], components: [], ephemeral: true });
+                    await interaction.editReply({ content: 'Here are the cars we have right now:', embeds: [newEmbed], components: [], ephemeral: true });
+                    
                 } else if (i.customId == 'shopItems') {
                     await i.reply('Not implemented yet');
                 } else if (i.customId == 'shopMods') {
