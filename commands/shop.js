@@ -106,8 +106,10 @@ module.exports = {
                     let carName = `${carData.year} ${carData.manufacturer} ${carData.name}`;
 
                     await interaction.editReply({ content: 'Shop closed', embeds: [], components: [], ephemeral: true });
-                    if (userData.bal < carData.cost) {
-                        await i.reply({ content: `You cannot afford the ${carName}`, embeds: [], components: [], ephemeral: true });
+                    if (userData.cars.includes(carData)) {
+                        await i.reply({ content: `You already own a ${carName}!`, embeds: [], components: [], ephemeral: true });
+                    } else if (userData.bal < carData.cost) {
+                        await i.reply({ content: `You cannot afford the ${carName}.`, embeds: [], components: [], ephemeral: true });
                     } else {
                         let newBal = userData.bal - carData.cost;
                         let update = { $set: { 'bal': newBal, 'current_car_id': new ObjectId(carId) }, $push: { 'cars': carData } };
