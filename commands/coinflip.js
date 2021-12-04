@@ -13,7 +13,7 @@ module.exports = {
         }
 
         let newBal = 0;
-        if (Math.random < 0.5) {
+        if (Math.random() < 0.5) {
             let winnings = userData.bal;
             newBal = userData.bal + winnings;
 
