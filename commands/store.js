@@ -20,17 +20,14 @@ module.exports = {
                 new MessageButton()
                     .setCustomId('shopMods')
                     .setLabel('Mods')
-                    .setStyle('')
+                    .setStyle('PRIMARY')
                     .setDisabled(true)
             );
-        
+
         const embed = new MessageEmbed()
-			.setColor('#0099ff')
-			.setTitle('Some title')
-			.setURL('https://discord.js.org')
-			.setDescription('Some description here');
-        // const embed = new MessageEmbed().setTitle('Shop').setTimestamp();
-        // .addField({ name: 'Welcome to the shop, what do you want to buy?', value: 'asdf'})
+            .setTitle('Shop')
+            .setDescription('What do you want to shop?')
+            .setTimestamp();
 
 		await interaction.reply({ content: "What do you want to shop for?", embeds: [embed], components: [row], ephemeral: true });
 
