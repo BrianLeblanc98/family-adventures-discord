@@ -3,25 +3,28 @@ const { token, mongoUri } = require('./config.json');
 
 const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
-const { MongoClient } = require('mongodb');
+const db = require('./util/db.js');
+
+db.init();
+// const { MongoClient } = require('mongodb');
+
+// global.mongoClient = new MongoClient(mongoUri);
+// global.ongoingRace = false;
+
+// // Connect to mongo database before connecting to discord
+// async function mongoConnect() {
+//     try {
+//         await mongoClient.connect();
+    
+//         await mongoClient.db('familyAdventuresDiscordDb').command({ping: 1});
+//         console.log('connected to mongodb')
+//     } finally {
+        
+//     }
+// }
+// mongoConnect().catch(console.dir);
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS]});
-global.mongoClient = new MongoClient(mongoUri);
-global.ongoingRace = false;
-
-// Connect to mongo database before connecting to discord
-async function mongoConnect() {
-    try {
-        await mongoClient.connect();
-    
-        await mongoClient.db('familyAdventuresDiscordDb').command({ping: 1});
-        console.log('connected to mongodb')
-    } finally {
-        
-    }
-}
-mongoConnect().catch(console.dir);
-
 
 client.commands = new Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
