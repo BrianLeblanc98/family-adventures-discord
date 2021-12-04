@@ -33,7 +33,7 @@ module.exports = {
 
         let message = await interaction.fetchReply();
         const buttonCollector = message.createMessageComponentCollector({ componentType: 'BUTTON', time: 120000 });
-        const selectMenuCollector = message.createMessageComponentCollector({ componentType: 'SELECTMENU', time: 120000});
+        const selectMenuCollector = message.createMessageComponentCollector({ componentType: 'SELECT_MENU', time: 120000});
 
         buttonCollector.on('collect', async i => {
             if (i.user.id === interaction.user.id) {
