@@ -32,8 +32,10 @@ module.exports = {
 		await interaction.reply({ content: 'What do you want to shop for?', embeds: [embed], components: [row], ephemeral: true });
 
         let message = await interaction.fetchReply();
-        const collector = message.createMessageComponentCollector({ componentType: 'BUTTON', time: 120000 });
-        collector.on('collect', async i => {
+        const buttonCollector = message.createMessageComponentCollector({ componentType: 'BUTTON', time: 120000 });
+        const selectMenuCollector = message.createMessageComponentCollector({ componentType: 'SELECTMENU', time: 120000});
+
+        buttonCollector.on('collect', async i => {
             if (i.user.id === interaction.user.id) {
                 if (i.customId == 'shopCars'){
                     let carsQuery = { 'starter' : { $exists: false } };
@@ -68,8 +70,6 @@ module.exports = {
                         );
                     await interaction.editReply({ content: 'Here are the cars we have right now:', embeds: [newEmbed], components: [newRow], ephemeral: true });
 
-                } else if (i.customId == 'carToBuy') {
-                    console/log(i);
                 } else if (i.customId == 'shopItems') {
                     await i.reply('Not implemented yet');
                 } else if (i.customId == 'shopMods') {
@@ -80,8 +80,18 @@ module.exports = {
             }
         });
 
-        collector.on('end', async () => {
+        buttonCollector.on('end', async () => {
             await interaction.editReply({ content: 'Shop timed out', embeds: [], components: [], ephemeral: true });
+        });
+
+        selectMenuCollector.on('collect', async i => {
+            if (i.user.id === interaction.user.id) {
+                if (i.customId == 'carToBuy') {
+                    console.log(i);
+                }
+            } else {
+                i.reply({ content: `These menus aren't for you!`, ephemeral: true });
+            }
         });
 	},
 };
