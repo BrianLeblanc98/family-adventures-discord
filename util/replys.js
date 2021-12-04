@@ -19,12 +19,12 @@ module.exports = {
     },
     basicRaceWin(raceName, interaction, carName, bet, winnings, newBal) {
         if (raceName == 'easy-race') {
-            return `<@${interaction.user.id}> won an easy race betting ${bet} Corona!\nThey clapped some cheeks in their ${carName}!\nCongrats on their ${winnings} Corona win! They now have ${newBal}.`
+            return `<@${interaction.user.id}> won an easy race betting ${bet} Corona!\nThey clapped some cheeks in their ${carName}!\nCongrats on their ${winnings} Corona win! They now have ${newBal} Corona.`
         }
     },
     basicRaceLose(raceName, interaction, carName, bet, newBal) {
         if (raceName == 'easy-race') {
-            return `<@${interaction.user.id}> lost an easy race betting ${bet} Corona.\nThey got clapped in their ${carName}.\nThey lost their ${bet} Corona bet, bringing shame on the family. They now have ${newBal}.`
+            return `<@${interaction.user.id}> lost an easy race betting ${bet} Corona.\nThey got clapped in their ${carName}.\nThey lost their ${bet} Corona bet, bringing shame on the family. They now have ${newBal} Corona.`
         }
     }
 }
