@@ -68,6 +68,8 @@ module.exports = {
                         );
                     await interaction.editReply({ content: 'Here are the cars we have right now:', embeds: [newEmbed], components: [newRow], ephemeral: true });
 
+                } else if (i.customId == 'carToBuy') {
+                    console/log(i);
                 } else if (i.customId == 'shopItems') {
                     await i.reply('Not implemented yet');
                 } else if (i.customId == 'shopMods') {
