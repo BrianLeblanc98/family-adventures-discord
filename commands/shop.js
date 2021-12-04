@@ -113,21 +113,21 @@ module.exports = {
                             userOwnsCar = true;
                         }
                     }
-                    console.log(userOwnsCar);
-                    // if (userData.cars.includes(carData)) {
-                    //     await i.reply({ content: `You already own a ${carName}!`, embeds: [], components: [], ephemeral: true });
-                    // } else if (userData.bal < carData.cost) {
-                    //     await i.reply({ content: `You cannot afford the ${carName}.`, embeds: [], components: [], ephemeral: true });
-                    // } else {
-                    //     let newBal = userData.bal - carData.cost;
-                    //     let update = { $set: { 'bal': newBal, 'current_car_id': new ObjectId(carId) }, $push: { 'cars': carData } };
-                    //     await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(userQuery, update);
-                    //     const embed = new MessageEmbed()
-                    //         .setTitle(`${interaction.user.tag}'s New car`)
-                    //         .setImage(`${carData.imgUrl}`)
-                    //         .setTimestamp();
-                    //     await i.reply({ content: `<@${i.user.id}> just bought a new ${carName}! Check it out:`, embeds: [ embed ] });
-                    // }
+                    
+                    if (userOwnsCar) {
+                        await i.reply({ content: `You already own a ${carName}!`, embeds: [], components: [], ephemeral: true });
+                    } else if (userData.bal < carData.cost) {
+                        await i.reply({ content: `You cannot afford the ${carName}.`, embeds: [], components: [], ephemeral: true });
+                    } else {
+                        let newBal = userData.bal - carData.cost;
+                        let update = { $set: { 'bal': newBal, 'current_car_id': new ObjectId(carId) }, $push: { 'cars': carData } };
+                        await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(userQuery, update);
+                        const embed = new MessageEmbed()
+                            .setTitle(`${interaction.user.tag}'s New car`)
+                            .setImage(`${carData.imgUrl}`)
+                            .setTimestamp();
+                        await i.reply({ content: `<@${i.user.id}> just bought a new ${carName}! Check it out:`, embeds: [ embed ] });
+                    }
                 }
             } else {
                 i.reply({ content: `These menus aren't for you!`, ephemeral: true });
