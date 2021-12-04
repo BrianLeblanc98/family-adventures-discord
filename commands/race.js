@@ -29,6 +29,10 @@ module.exports = {
         ongoingRace = true;
 
         let entry = interaction.options.getInteger('entry');
+        if (entry <= 0) {
+            await interaction.reply({ content: `Entries must be positive!`, ephemeral: true });
+            return;
+        }
 
         const row = new MessageActionRow()
             .addComponents(
