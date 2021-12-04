@@ -4,7 +4,7 @@ const replys = require('../util/replys.js');
 const income = require('../util/income.json');
 
 const NAME = 'medium-race';
-const DESCRIPTION = 'Make our family proud, and take out some poser who thinks their car is fast.';
+const DESCRIPTION = 'Make our family proud, and take out some kid with a lightly tuned car.';
 const OPTION_DESCRIPTION = `Bet ${income[NAME].minBet}-${income[NAME].maxBet} Coronas, you\'ll get ${income[NAME].payoutPercent * 100}% back if you win.`;
 
 module.exports = {

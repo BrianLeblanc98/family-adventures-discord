@@ -23,6 +23,8 @@ module.exports = {
             return `<@${interaction.user.id}> won an easy race betting ${bet} Corona!\nThey clapped some cheeks in their ${carName}, showing that the family easily prevails!${ending}`
         } else if (raceName == 'medium-race') {
             return `<@${interaction.user.id}> won a medium race betting ${bet} Corona!\nThey destroyed some kid in their ${carName}, showing that the family can still fight!${ending}`
+        } else if (raceName == 'uber-race') {
+            return `<@${interaction.user.id}> won an uber race betting ${bet} Corona!\nThey completely desolated some racer in their ${carName}, showing that the family will never hold back!${ending}`
         }
     },
     basicRaceLose(raceName, interaction, carName, bet, newBal) {
@@ -31,6 +33,8 @@ module.exports = {
             return `<@${interaction.user.id}> lost an easy race betting ${bet} Corona.\nThey got clapped in their ${carName}, bringing incredible shame on the family.${ending}`
         } else if (raceName == 'medium-race') {
             return `<@${interaction.user.id}> lost a medium race betting ${bet} Corona.\nThey got destroyed in their ${carName}, bringing shame on the family.${ending}`
+        } else if (raceName == 'uber-race') {
+            return `<@${interaction.user.id}> lost a medium race betting ${bet} Corona.\nThey got completely desolated in their ${carName}, a shame, but it was a tough race.${ending}`
         }
     }
 }
