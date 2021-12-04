@@ -15,7 +15,7 @@ module.exports = {
 			{ name: '/bal', value: 'Shows your cuurent balance of Coronas, the currency in this family.' },
 			{ name: '/leaderboard', value: 'Show the family leaderboard.' },
 			{ name: '/starter', value: 'Choose your starting car. Each new family member only gets to do this once!' },
-			{ name: '/store', value: 'Look at and buy many things from the family store, using Corona as a currency!' },
+			{ name: '/shop', value: 'Look at and buy many things from the family shop, using Corona as a currency!' },
 			{ name: '/user', value: 'Show the family all your current data.' }
 		];
 
