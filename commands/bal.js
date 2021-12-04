@@ -6,6 +6,8 @@ const NAME = 'bal';
 const DESCRIPTION = 'Shows your cuurent balance of Coronas, the currency in this family.';
 
 module.exports = {
+    name: NAME,
+    description: DESCRIPTION,
 	data: new SlashCommandBuilder()
 		.setName(NAME)
 		.setDescription(DESCRIPTION),

@@ -1,13 +1,22 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const fs = require('fs');
+const db = require('../util/db.js');
+const replys = require('../util/replys.js');
+
+const NAME = 'join';
+const DESCRIPTION = 'Join the family, get your first car, and get ready to race!';
 
 module.exports = {
+    name: NAME,
+    description: DESCRIPTION,
 	data: new SlashCommandBuilder()
-		.setName('join')
-		.setDescription('Join the family, get your first car, and get ready to race!'),
+		.setName(NAME)
+		.setDescription(DESCRIPTION),
 	async execute(interaction) {
-        if (await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne({'id': interaction.user.id.toString()})){
-            await interaction.reply({ content: `You're already part of the family <@${interaction.user.id}>!`, ephemeral: true });
+        let userData = await db.getUser(interaction.user.id.toString());
+        let userInFamily = await db.inFamily(userData);
+
+        if (userInFamily){
+            await interaction.reply(replys.inFamily(interaction));
             return;
         }
 
@@ -16,16 +25,13 @@ module.exports = {
             "name": interaction.user.username,
             "bought_starter": false,
             "bal": 0,
-            "current_car_id": "000",
+            "current_car_id": "",
             "cars": [],
             "items": [],
             "mods": []
         };
 
-        await mongoClient.db('familyAdventuresDiscordDb').collection('users').insertOne(newUser);
-        console.log(`${interaction.user.username} added in db`);
-
-        await interaction.reply(`Welcome to the family <@${interaction.user.id}>! Choose your first car with /starter!`);
-
+        await db.addUser(newUser);
+        await interaction.reply(replys.joinedFamily(interaction));
 	},
 };

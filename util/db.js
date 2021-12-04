@@ -15,6 +15,9 @@ module.exports = {
             
         }
     },
+    async addUser(userJson) {
+        await mongoClient.db('familyAdventuresDiscordDb').collection('users').insertOne(userJson);
+    },
     async getUser(id) {
         let userData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne({ 'id': id });
         return userData;

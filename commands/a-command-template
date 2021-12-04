@@ -1,9 +1,17 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const db = require('../util/db.js');
+const replys = require('../util/replys.js');
+const income = require('../util/income.json');
+
+const NAME = '';
+const DESCRIPTION = '';
 
 module.exports = {
+	name: NAME,
+    description: DESCRIPTION,
 	data: new SlashCommandBuilder()
-		.setName('')
-		.setDescription(''),
+		.setName(NAME)
+		.setDescription(DESCRIPTION),
 	async execute(interaction) {
 		await interaction.reply('');
 	},

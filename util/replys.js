@@ -2,8 +2,14 @@ module.exports = {
     showBal(bal) {
         return `Your current balance is ${bal} Coronas`;
     },
+    inFamily(interaction) {
+        return { content: `You're already part of the family <@${interaction.user.id}>!`, ephemeral: true };
+    },
     notInFamily(interaction) {
         return { content: `You're not part of the family <@${interaction.user.id}>! Join us by using /join`, ephemeral: true };
+    },
+    joinedFamily(interaction) {
+        return `Welcome to the family <@${interaction.user.id}>! Choose your first car with /starter!`;
     },
     notBoughtStarter(interaciton) {
         return { content: `You haven't chosen your starter car <@${interaciton.user.id}>! Use /starter to get your first car from the family.`, ephemeral: true };
