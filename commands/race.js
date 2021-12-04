@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageActionRow, MessageButton, Message } = require('discord.js');
+const { MessageActionRow, MessageButton, Message, MessageEmbed } = require('discord.js');
+const ObjectId = require('mongodb').ObjectId;
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -88,7 +89,7 @@ module.exports = {
                 let winnerQuery = {'id': winnerId.toString()};
                 let winnerData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne(winnerQuery);
 
-                let carQuery = { '_id': winnerData.current_car_id };
+                let carQuery = { '_id': new ObjectId(winnerData.current_car_id) };
                 let carData = await mongoClient.db('familyAdventuresDiscordDb').collection('cars').findOne(carQuery);
                 let carName = `${carData.year} ${carData.manufacturer} ${carData.name}`;
 
