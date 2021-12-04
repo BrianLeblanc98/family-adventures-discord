@@ -61,7 +61,7 @@ module.exports = {
         } else {
             // LOSE
             newBal = userData.bal - bet;
-            await interaction.reply(`<@${interaction.user.id}> lost a ${bet} Corona bet in their ${carName}, bringing shame on the family.`);
+            await interaction.reply(`<@${interaction.user.id}> lost a ${bet} Corona bet in their ${carName}, THEY GOT ABSOLUTELY REKT`);
         }
 
         let update = { $set: { 'bal': newBal } };
