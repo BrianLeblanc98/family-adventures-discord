@@ -24,6 +24,7 @@ module.exports = {
 
         const embed = new MessageEmbed()
             .setTitle(`${interaction.user.tag}'s data`)
+            .setImage('https://hips.hearstapps.com/roa.h-cdn.co/assets/cm/14/47/480x267/546b524892943_-_2002-honda-civic-si-lg.jpg')
 			.addFields(userDataFields)
             .setTimestamp();
 		await interaction.reply({ embeds: [ embed ], ephemeral: true});
