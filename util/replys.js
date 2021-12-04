@@ -17,6 +17,13 @@ module.exports = {
     workDone(workPay, newBal) {
         return `Small family work done, added ${workPay} Coronas to your balance. Current balance: ${newBal} Coronas`;
     },
+    coinflip(win, interaction, newBal) {
+        if (win) {
+            return `<@${interaction.user.id}> doubled their money!\nThey now have ${newBal} Corona.`;
+        } else {
+            return `<@${interaction.user.id}> lost it all.\nThey now have ${newBal} Corona.`;
+        }
+    },
     invalidBet() {
         return { content: "Please enter 'all', 'max', or a positive integer", ephemeral: true };
     },

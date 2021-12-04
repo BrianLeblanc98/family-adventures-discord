@@ -1,28 +1,33 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const db = require('../util/db.js');
+const replys = require('../util/replys.js');
+const income = require('../util/income.json');
+
+const NAME = 'coinflip';
+const DESCRIPTION = 'DOUBLE OR NOTHING FOR THE FAMILY!!!';
 
 module.exports = {
+	name: NAME,
+    description: DESCRIPTION,
 	data: new SlashCommandBuilder()
-		.setName('coinflip')
-		.setDescription('DOUBLE OR NOTHING FOR THE FAMILY!!!'),
+		.setName(NAME)
+		.setDescription(DESCRIPTION),
 	async execute(interaction) {
-		let userQuery = {'id': interaction.user.id.toString()};
-        let userData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne(userQuery);
-        if (!userData){
-            await interaction.reply({ content: `You're not part of the family <@${interaction.user.id}>! Join us by using /join`, ephemeral: true });
+		let userData = await db.getUser(interaction.user.id.toString());
+        let userInFamily = await db.inFamily(userData);
+        if (!userInFamily) {
+            await interaction.reply(replys.notInFamily(interaction));
             return;
         }
 
-        let newBal = 0;
         if (Math.random() < 0.5) {
-            let winnings = userData.bal;
-            newBal = userData.bal + winnings;
+            let newBal = await db.addBal(userData, userData.bal);
 
-            await interaction.reply(`<@${interaction.user.id}> doubled their money! They now have ${newBal}.`);
+            await interaction.reply(replys.coinflip(true, interaction, newBal));
         } else {
-            await interaction.reply(`<@${interaction.user.id}> lost it all.`);
-        }
+            let newBal = await db.removeBal(userData, userData.bal);
 
-        let update = { $set: { 'bal': newBal } };
-        await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(userQuery, update);
+            await interaction.reply(replys.coinflip(false, interaction, newBal));
+        }
 	},
 };
