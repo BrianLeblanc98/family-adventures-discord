@@ -1,10 +1,15 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageActionRow, MessageButton, Message } = require('discord.js');
 
+const NAME = 'starter';
+const DESCRIPTION = 'Choose your starting car. Each new family member only gets to do this once!';
+
 module.exports = {
+	name: NAME,
+    description: DESCRIPTION,
 	data: new SlashCommandBuilder()
-		.setName('starter')
-		.setDescription('Choose your starting car. Each new family member only gets to do this once!'),
+		.setName(NAME)
+		.setDescription(DESCRIPTION),
 	async execute(interaction) {
 		let userQuery = {'id': interaction.user.id.toString()};
         let userData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne(userQuery);

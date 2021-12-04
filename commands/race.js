@@ -2,10 +2,15 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageActionRow, MessageButton, Message, MessageEmbed } = require('discord.js');
 const ObjectId = require('mongodb').ObjectId;
 
+const NAME = 'race';
+const DESCRIPTION = 'Set an entry fee, and anyone can join this winner-takes-all family race!';
+
 module.exports = {
+	name: NAME,
+    description: DESCRIPTION,
 	data: new SlashCommandBuilder()
-		.setName('race')
-		.setDescription('Set an entry fee, and anyone can join this winner-takes-all family race!')
+		.setName(NAME)
+		.setDescription(DESCRIPTION)
         .addIntegerOption(option =>
             option.setName('entry')
                 .setDescription('Set the entry fee for the race')

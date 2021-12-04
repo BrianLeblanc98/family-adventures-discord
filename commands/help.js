@@ -1,11 +1,17 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
 
+const NAME = 'help';
+const DESCRIPTION = 'Display help information for the family.';
+
 module.exports = {
+	name: NAME,
+    description: DESCRIPTION,
 	data: new SlashCommandBuilder()
-		.setName('help')
-		.setDescription('Display help information for the family.'),
+		.setName(NAME)
+		.setDescription(DESCRIPTION),
 	async execute(interaction) {
+		// TODO: Generate this by using the name and description fields that are exported by each command
 		let help = [
 			{ name: '/help', value: 'Display help information for the family.' },
 			{ name: '/join', value: 'Join the family, get your first car, and get ready to race!' },
