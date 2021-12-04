@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const { MessageActionRow, MessageButton, Message, MessageEmbed } = require('discord.js');
+const { MessageActionRow, MessageButton, Message, MessageEmbed, MessageSelectMenu } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -41,16 +41,32 @@ module.exports = {
                     carsData = await carsData.toArray();
 
                     let newDesc = '';
+                    let newRowOptions = [];
                     for (carData of carsData) {
-                        carName = `${carData.year} ${carData.manufacturer} ${carData.name}`;
+                        let carName = `${carData.year} ${carData.manufacturer} ${carData.name}`;
                         newDesc += `${carName} -- ${carData.cost} Coronas\n`
+
+                        let optionJson = {
+                            label: `${carName} -- ${carData.cost} Coronas`,
+                            description: `${carData.description}`,
+                            value: `${carData._id}`
+                        };
+                        newRowOptions.push(optionJson);
                     }
 
                     let newEmbed = new MessageEmbed()
                         .setTitle('Cars')
                         .setDescription(newDesc)
                         .setTimestamp();
-                    await interaction.editReply({ content: 'Here are the cars we have right now:', embeds: [newEmbed], components: [], ephemeral: true });
+
+                    const newRow = new MessageActionRow()
+                        .addComponents(
+                            new MessageSelectMenu()
+                                .setCustomId('carToBuy')
+                                .setPlaceholder('No car selected')
+                                .addOptions(newRowOptions),
+                        );
+                    await interaction.editReply({ content: 'Here are the cars we have right now:', embeds: [newEmbed], components: [row], ephemeral: true });
 
                 } else if (i.customId == 'shopItems') {
                     await i.reply('Not implemented yet');
