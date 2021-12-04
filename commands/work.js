@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const db = require('../util/db.js');
+const replys = require('../util/replys.js');
 
 const NAME = 'work';
 const DESCRIPTION = 'Do some small work for the family, and get a small amount of Corona in return.';
@@ -12,11 +13,11 @@ module.exports = {
 	async execute(interaction) {
         let userData = await db.getUser(interaction.user.id.toString());
         if (!db.inFamily(userData)) {
-            await interaction.reply({ content: `You're not part of the family <@${interaction.user.id}>! Join us by using /join`, ephemeral: true });
+            await interaction.reply(replys.notInFamily(interaction));
         }
 
         let newBal = await db.addBal(userData, WORK_PAY);
-		await interaction.reply(`Small family work done, added ${WORK_PAY} Coronas to your balance. Current balance: ${newBal} Coronas`);
+		await interaction.reply(replys.workDone(WORK_PAY, newBal));
 	},
 };
 
@@ -26,8 +27,3 @@ module.exports = {
 //     await interaction.reply({ content: `You're not part of the family <@${interaction.user.id}>! Join us by using /join`, ephemeral: true });
 //     return;
 // }
-
-// let workPay = 5;
-// let newBal = userData.bal + workPay;
-// let update = { $set: { 'bal': newBal } };
-// await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(userQuery, update);
