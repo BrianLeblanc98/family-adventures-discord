@@ -87,7 +87,7 @@ module.exports = {
         selectMenuCollector.on('collect', async i => {
             if (i.user.id === interaction.user.id) {
                 if (i.customId == 'carToBuy') {
-                    console.log(i.message.components);
+                    console.log(i.message.components[0]);
                 }
             } else {
                 i.reply({ content: `These menus aren't for you!`, ephemeral: true });
