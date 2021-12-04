@@ -4,7 +4,7 @@ const { MessageActionRow, MessageButton, Message, MessageEmbed } = require('disc
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('store')
-		.setDescription('Look at and buy many things from the family store, using Corona as a currency!'),
+		.setDescription('Browse many things from the family store, using Corona as a currency!'),
 	async execute(interaction) {
         const row = new MessageActionRow()
             .addComponents(
@@ -26,20 +26,31 @@ module.exports = {
 
         const embed = new MessageEmbed()
             .setTitle('Shop')
-            .setDescription('What do you want to shop?')
+            .setDescription('The family store has everything from cars, random items, and car mods!')
             .setTimestamp();
 
-		await interaction.reply({ content: "What do you want to shop for?", embeds: [embed], components: [row], ephemeral: true });
+		await interaction.reply({ content: 'What do you want to shop for?', embeds: [embed], components: [row], ephemeral: true });
 
         let message = await interaction.fetchReply();
-        const collector = message.createMessageComponentCollector({ componentType: 'BUTTON', time: 60000 });
+        const collector = message.createMessageComponentCollector({ componentType: 'BUTTON', time: 120000 });
         collector.on('collect', async i => {
             if (i.user.id === interaction.user.id) {
                 if (i.customId == 'shopCars'){
                     let carsQuery = { 'starter' : { $exists: false } };
                     let carsData = await mongoClient.db('familyAdventuresDiscordDb').collection('cars').find(carsQuery);
                     carsData = await carsData.toArray();
-                    console.log(carsData);
+
+                    let newDesc = '';
+                    for (car of carsData) {
+                        carName = `${carData.year} ${carData.manufacturer} ${carData.name}`;
+                        message += `${carName}: ${car.cost}\n`
+                    }
+
+                    let newEmbed = new MessageEmbed()
+                        .setTitle('Cars')
+                        .setDescription(newDesc)
+                        .setTimestamp();
+                    await interaction.editReply({ content: 'Here are the cars we have right now:', embeds: [embed], components: [], ephemeral: true });
                 } else if (i.customId == 'shopItems') {
                     await i.reply('Not implemented yet');
                 } else if (i.customId == 'shopMods') {
@@ -51,7 +62,7 @@ module.exports = {
         });
 
         collector.on('end', async () => {
-            await interaction.editReply({ content: 'Shop timed out', components: [], ephemeral: true });
+            await interaction.editReply({ content: 'Shop timed out', embeds: [], components: [], ephemeral: true });
         });
 	},
 };
