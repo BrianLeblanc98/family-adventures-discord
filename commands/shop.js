@@ -88,7 +88,7 @@ module.exports = {
             if (i.user.id === interaction.user.id) {
                 if (i.customId == 'carToBuy') {
                     let carId = i.values[0];
-                    let carQuery = { '_id' : carId };
+                    let carQuery = { '_id': ObjectId(carId) };
                     let carData = await mongoClient.db('familyAdventuresDiscordDb').collection('cars').findOne(carQuery);
                     console.log(carData);
                 }
