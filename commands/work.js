@@ -13,10 +13,11 @@ module.exports = {
             return;
         }
 
-        let newBal = userData.bal + 2;
+        let workPay = 5;
+        let newBal = userData.bal + workPay;
         let update = { $set: { 'bal': newBal } };
         await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(userQuery, update);
 
-		await interaction.reply(`Small family work done, added 2 Coronas to your balance. Current balance: ${newBal} Coronas`);
+		await interaction.reply(`Small family work done, added ${workPay} Coronas to your balance. Current balance: ${newBal} Coronas`);
 	},
 };
