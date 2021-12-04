@@ -95,7 +95,7 @@ module.exports = {
 
                 message = `${winnerData.name} won the ${winnings} Corona pot with their ${carName}! They showed the family who's boss.`;
                 embed = new MessageEmbed()
-                    .setTitle(`<@${winnerData.id}>'s car`)
+                    .setTitle(`${winnerData.name}'s car`)
                     .setImage(`${carData.imgUrl}`)
                     .setTimestamp();
 
@@ -115,7 +115,7 @@ module.exports = {
                 }
             }
 
-            await interaction.followUp({ contentL: message, embeds: [embed] } );
+            await interaction.followUp({ content: message, embeds: [embed] } );
             ongoingRace = false;
         });
 	},
