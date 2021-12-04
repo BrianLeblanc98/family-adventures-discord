@@ -43,7 +43,7 @@ module.exports = {
                     let newDesc = '';
                     for (carData of carsData) {
                         carName = `${carData.year} ${carData.manufacturer} ${carData.name}`;
-                        newDesc += `${carName}: ${carData.cost}\n`
+                        newDesc += `${carName} -- ${carData.cost} Coronas\n`
                     }
 
                     let newEmbed = new MessageEmbed()
