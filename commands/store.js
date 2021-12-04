@@ -41,9 +41,9 @@ module.exports = {
                     carsData = await carsData.toArray();
 
                     let newDesc = '';
-                    for (car of carsData) {
+                    for (carData of carsData) {
                         carName = `${carData.year} ${carData.manufacturer} ${carData.name}`;
-                        message += `${carName}: ${car.cost}\n`
+                        message += `${carName}: ${carData.cost}\n`
                     }
 
                     let newEmbed = new MessageEmbed()
