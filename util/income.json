@@ -30,6 +30,6 @@
         "minBet": 100000,
         "maxBet": 2500000,
         "payoutPercent": 1,
-        "winPercent": 0.1
+        "winPercent": 0.55
     }
 }
