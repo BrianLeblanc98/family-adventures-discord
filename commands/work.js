@@ -12,7 +12,8 @@ module.exports = {
 		.setDescription(DESCRIPTION),
 	async execute(interaction) {
         let userData = await db.getUser(interaction.user.id.toString());
-        if (!db.inFamily(userData)) {
+        let userInFamily = await db.inFamily(userData);
+        if (!userInFamily) {
             await interaction.reply(replys.notInFamily(interaction));
             return;
         }
