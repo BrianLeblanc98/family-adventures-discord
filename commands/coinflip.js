@@ -20,13 +20,16 @@ module.exports = {
             return;
         }
 
+        if (userData.bal <= 0) {
+            await interaction.reply(replys.underMinBet(1));
+            return;
+        }
+
         if (Math.random() < 0.5) {
             let newBal = await db.addBal(userData, userData.bal);
-
             await interaction.reply(replys.coinflip(true, interaction, newBal));
         } else {
             let newBal = await db.removeBal(userData, userData.bal);
-
             await interaction.reply(replys.coinflip(false, interaction, newBal));
         }
 	},
