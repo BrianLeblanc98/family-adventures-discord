@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('medium-race')
+		.setName('medium-race-old')
 		.setDescription('Make our family proud, and take out some kid with a lightly tuned car.')
         .addStringOption(option => 
             option.setName('bet')
