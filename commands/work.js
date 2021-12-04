@@ -25,10 +25,3 @@ module.exports = {
 		await interaction.reply(replys.workDone(this.workPay, newBal));
 	},
 };
-
-// let userQuery = {'id': interaction.user.id.toString()};
-// let userData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne(userQuery);
-// if (!userData){
-//     await interaction.reply({ content: `You're not part of the family <@${interaction.user.id}>! Join us by using /join`, ephemeral: true });
-//     return;
-// }
