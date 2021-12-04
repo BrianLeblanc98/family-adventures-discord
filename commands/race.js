@@ -93,7 +93,7 @@ module.exports = {
                 let carData = await mongoClient.db('familyAdventuresDiscordDb').collection('cars').findOne(carQuery);
                 let carName = `${carData.year} ${carData.manufacturer} ${carData.name}`;
 
-                message = `${winnerData.name} won the ${winnings} Corona pot with their ${carName}! They showed the family who's boss.`;
+                message = `<@${winnerData.id}> won the ${winnings} Corona pot with their ${carName}! They showed the family who's boss.`;
                 embed = new MessageEmbed()
                     .setTitle(`${winnerData.name}'s car`)
                     .setImage(`${carData.imgUrl}`)
