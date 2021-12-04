@@ -66,7 +66,7 @@ module.exports = {
                                 .setPlaceholder('No car selected')
                                 .addOptions(newRowOptions),
                         );
-                    await interaction.editReply({ content: 'Here are the cars we have right now:', embeds: [newEmbed], components: [row], ephemeral: true });
+                    await interaction.editReply({ content: 'Here are the cars we have right now:', embeds: [newEmbed], components: [newRow], ephemeral: true });
 
                 } else if (i.customId == 'shopItems') {
                     await i.reply('Not implemented yet');
