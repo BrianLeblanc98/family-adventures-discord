@@ -2,8 +2,8 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const db = require('../util/db.js');
 const replys = require('../util/replys.js');
 
-const NAME = 'work';
-const DESCRIPTION = 'Do some small work for the family, and get a small amount of Corona in return.';
+// const NAME = 'work';
+// const DESCRIPTION = 'Do some small work for the family, and get a small amount of Corona in return.';
 // const WORK_PAY = 5;
 
 module.exports = {
@@ -11,7 +11,7 @@ module.exports = {
     DESCRIPTION: 'Do some small work for the family, and get a small amount of Corona in return.',
     WORK_PAY: 5,
 	data: new SlashCommandBuilder()
-		.setName(NAME)
+		.setName(this.NAME)
 		.setDescription(DESCRIPTION),
 	async execute(interaction) {
         let userData = await db.getUser(interaction.user.id.toString());
