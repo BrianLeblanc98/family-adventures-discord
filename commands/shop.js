@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageActionRow, MessageButton, Message, MessageEmbed, MessageSelectMenu } = require('discord.js');
+const ObjectId = require('mongodb').ObjectId;
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -88,7 +89,7 @@ module.exports = {
             if (i.user.id === interaction.user.id) {
                 if (i.customId == 'carToBuy') {
                     let carId = i.values[0];
-                    let carQuery = { '_id': ObjectId(carId) };
+                    let carQuery = { '_id': new ObjectId(carId) };
                     let carData = await mongoClient.db('familyAdventuresDiscordDb').collection('cars').findOne(carQuery);
                     console.log(carData);
                 }
