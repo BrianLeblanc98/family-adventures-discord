@@ -15,16 +15,19 @@ module.exports = {
                 new MessageButton()
                     .setCustomId('shopItems')
                     .setLabel('Items')
-                    .setStyle('PRIMARY'),
+                    .setStyle('PRIMARY')
+                    .setDisabled(true),
                 new MessageButton()
                     .setCustomId('shopMods')
                     .setLabel('Mods')
                     .setStyle('')
+                    .setDisabled(true)
             );
 
         const embed = new MessageEmbed()
             .setTitle('Shop')
             .setDescription('What do you want to shop?')
+            .addField('')
             .setTimestamp();
 
 		await interaction.reply({ content: "What do you want to shop for?", embeds: [embed], components: [row], ephemeral: true });
