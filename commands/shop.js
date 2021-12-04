@@ -109,10 +109,10 @@ module.exports = {
 
                     let userOwnsCar = false;
                     for (car of userData.cars) {
-                        if (car._id == carData._id){
-                            userOwnsCar = true;
-                            break;
-                        }
+                        console.log(car._id)
+                        console.log(carData._id)
+                        console.log("------")
+                            
                     }
                     console.log(userOwnsCar);
                     // if (userData.cars.includes(carData)) {
