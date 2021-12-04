@@ -1,6 +1,6 @@
 module.exports = {
     showBal(bal) {
-        `Your current balance is ${bal} Coronas`
+        return `Your current balance is ${bal} Coronas`;
     },
     notInFamily(interaction) {
         return { content: `You're not part of the family <@${interaction.user.id}>! Join us by using /join`, ephemeral: true };
