@@ -3,18 +3,14 @@ const { mongoUri } = require('../config.json');
 
 mongoClient = new MongoClient(mongoUri);
 
-const a = require('../data/store/cars/325i.json');
-const b = require('../data/store/cars/civic.json');
-const c = require('../data/store/cars/mustang.json');
-const d = require('../data/store/cars/impreza.json');
+const cars = require('../data/store/cars/requests.json');
 
 async function run() {
     try {
         await mongoClient.connect();
-        await mongoClient.db('familyAdventuresDiscordDb').collection('cars').insertOne(a);
-        await mongoClient.db('familyAdventuresDiscordDb').collection('cars').insertOne(b);
-        await mongoClient.db('familyAdventuresDiscordDb').collection('cars').insertOne(c);
-        await mongoClient.db('familyAdventuresDiscordDb').collection('cars').insertOne(d);
+        for (car in cars.newCars) {
+            await mongoClient.db('familyAdventuresDiscordDb').collection('cars').insertOne(car);
+        }
     } finally {
         
     }

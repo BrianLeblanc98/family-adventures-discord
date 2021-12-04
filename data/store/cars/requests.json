@@ -1,0 +1,44 @@
+{
+    "newCars": [
+        {
+            "name": "Mustang Fastback",
+            "manufacturer": "1967",
+            "year": "1967",
+            "description": "You suspect that this car is a favourite of those with no soul.",
+            "cost": 60000,
+            "imgUrl": "https://www.carscoops.com/wp-content/uploads/2020/08/Ringbrothers-Ford-Mustang-1.jpg"
+        },
+        {
+            "name": "Camaro",
+            "manufacturer": "Chevrolet",
+            "year": "2010",
+            "description": "Something seems fishy about this car, it seems like it might be more than just a car.",
+            "cost": 70000,
+            "imgUrl": "https://hips.hearstapps.com/hmg-prod/amv-prod-cad-assets/images/09q3/289836/2010-chevrolet-camaro-transformers-special-edition-photo-289838-s-986x603.jpg?resize=980:*"
+        },
+        {
+            "name": "M18 Hellcat",
+            "manufacturer": "Buick",
+            "year": "1944",
+            "description": "I think Mackie might like this vehicle",
+            "cost": 250000,
+            "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/M18_hellcat_side.jpg/1024px-M18_hellcat_side.jpg"
+        },
+        {
+            "name": "M24 Chaffee",
+            "manufacturer": "Cadillac",
+            "year": "1944",
+            "description": "It would be a dream to own one of these in some peoples lifetime.",
+            "cost": 300000,
+            "imgUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/M24_Chaffee_33314_4CV_pic07.JPG/1024px-M24_Chaffee_33314_4CV_pic07.JPG"
+        },
+        {
+            "name": "Challenger Hellcat",
+            "manufacturer": "Dodge",
+            "year": "2019",
+            "description": "Straight lines only",
+            "cost": 80000,
+            "imgUrl": "https://www.motortrend.com/uploads/sites/5/2018/06/2019-Dodge-Challenger-SRT-Hellcat-Redeye-Widebody-front-three-quarter-in-motion.jpg?fit=around%7C958:598.75"
+        }
+    ]
+}
