@@ -7,6 +7,18 @@ module.exports = {
 		.setName('shop')
 		.setDescription('Browse many things from the family shop, using Corona as a currency!'),
 	async execute(interaction) {
+        let userQuery = {'id': interaction.user.id.toString()};
+        let userData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').findOne(userQuery);
+        if (!userData){
+            await interaction.reply({ content: `You're not part of the family <@${interaction.user.id}>! Join us by using /join`, ephemeral: true });
+            return;
+        }
+
+        if (!userData.bought_starter) {
+            await interaction.reply({ content: `You haven't chosen your starter car <@${interaction.user.id}>! Use /starter to get your first car from the family.`, ephemeral: true });
+            return;
+        }
+
         const row = new MessageActionRow()
             .addComponents(
                 new MessageButton()
@@ -91,7 +103,12 @@ module.exports = {
                     let carId = i.values[0];
                     let carQuery = { '_id': new ObjectId(carId) };
                     let carData = await mongoClient.db('familyAdventuresDiscordDb').collection('cars').findOne(carQuery);
-                    console.log(carData);
+                    let carName = `${carData.year} ${carData.manufacturer} ${carData.name}`;
+
+                    if (userData.bal < carData.cost) {
+                        await interaction.editReply({ content: 'Shop closed', embeds: [], components: [], ephemeral: true });
+                        await i.reply({ content: `You cannot afford the ${carName}`, embeds: [], components: [], ephemeral: true });
+                    }
                 }
             } else {
                 i.reply({ content: `These menus aren't for you!`, ephemeral: true });
