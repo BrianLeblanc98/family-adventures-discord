@@ -79,6 +79,7 @@ module.exports = {
             await interaction.editReply({ content: `<@${interaction.user.id}>'s ${entry} Corona race is over.`, components: [] });
 
             let message = '';
+            let embed;
             if (entryListIds.length <= 1) {
                 message = 'Not enough people showed up, you need at least 2 people to race. The family is disappointed.';
             } else {
@@ -92,6 +93,10 @@ module.exports = {
                 let carName = `${carData.year} ${carData.manufacturer} ${carData.name}`;
 
                 message = `<@${winnerData.id}> won the ${winnings} Corona pot with their ${carName}! They showed the family who's boss.`;
+                embed = new MessageEmbed()
+                    .setTitle(`<@${winnerData.id}>'s car`)
+                    .setImage(`${carData.imgUrl}`)
+                    .setTimestamp();
 
                 let newBal = winnerData.bal + winnings - entry;
                 let update = { $set: { 'bal': newBal } };
@@ -109,7 +114,7 @@ module.exports = {
                 }
             }
 
-            await interaction.followUp(message);
+            await interaction.followUp({ contentL: message, embeds: [embed] } );
             ongoingRace = false;
         });
 	},
