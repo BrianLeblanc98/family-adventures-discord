@@ -68,11 +68,11 @@ module.exports = {
             let winnings = Math.ceil(bet * income[NAME].payoutPercent);
             let newBal = await db.addBal(userData, winnings);
 
-            await interaction.reply(replys.basicRaceWin(NAME, interaction, carName, winnings, newBal));
+            await interaction.reply(replys.basicRaceWin(NAME, interaction, carName, bet, winnings, newBal));
         } else {
             // LOSE
             let newBal = await db.removeBal(userData, bet);
-            
+
             await interaction.reply(replys.basicRaceLose(NAME, interaction, carName, bet, newBal));
         }
 	},
