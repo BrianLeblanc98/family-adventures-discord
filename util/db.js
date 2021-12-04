@@ -16,14 +16,17 @@ module.exports = {
     async setBal(userData, newBal) {
         let userQuery = { 'id': userData.id };
         let update = { $set: { 'bal': newBal } };
-        let result = await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(userQuery, update);
-        return result;
+        await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(userQuery, update);
     },
     async addBal(userData, bal) {
-        this.setBal(userData, userData.bal + bal);
+        let newBal = userData.bal + bal;
+        this.setBal(userData, newBal);
+        return newBal;
     },
     async removeBal(userData, bal) {
-        this.setBal(userData, userData.bal - bal);
+        let newBal = userData.bal - bal;
+        this.setBal(userData, newBal);
+        return newBal;
     },
     async getCar(id) {
 

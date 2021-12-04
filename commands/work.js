@@ -15,9 +15,8 @@ module.exports = {
             await interaction.reply({ content: `You're not part of the family <@${interaction.user.id}>! Join us by using /join`, ephemeral: true });
         }
 
-        let result = await db.addBal(userData, WORK_PAY);
-        console.log(result);
-		await interaction.reply(`Small family work done, added ${WORK_PAY} Coronas to your balance. Current balance: - Coronas`);
+        let newBal = await db.addBal(userData, WORK_PAY);
+		await interaction.reply(`Small family work done, added ${WORK_PAY} Coronas to your balance. Current balance: ${newBal} Coronas`);
 	},
 };
 
