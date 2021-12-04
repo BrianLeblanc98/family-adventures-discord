@@ -2,14 +2,17 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const db = require('../util/db.js');
 const replys = require('../util/replys.js');
 
-const NAME = 'work';
-const DESCRIPTION = 'Do some small work for the family, and get a small amount of Corona in return.';
-const WORK_PAY = 5;
+// const NAME = 'work';
+// const DESCRIPTION = 'Do some small work for the family, and get a small amount of Corona in return.';
+// const WORK_PAY = 5;
 
 module.exports = {
+    NAME: 'work',
+    DESCRIPTION: 'Do some small work for the family, and get a small amount of Corona in return.',
+    WORK_PAY: 5,
 	data: new SlashCommandBuilder()
-		.setName(NAME)
-		.setDescription(DESCRIPTION),
+		.setName(this.NAME)
+		.setDescription(this.DESCRIPTION),
 	async execute(interaction) {
         let userData = await db.getUser(interaction.user.id.toString());
         let userInFamily = await db.inFamily(userData);
@@ -18,8 +21,8 @@ module.exports = {
             return;
         }
 
-        let newBal = await db.addBal(userData, WORK_PAY);
-		await interaction.reply(replys.workDone(WORK_PAY, newBal));
+        let newBal = await db.addBal(userData, this.WORK_PAY);
+		await interaction.reply(replys.workDone(this.WORK_PAY, newBal));
 	},
 };
 
