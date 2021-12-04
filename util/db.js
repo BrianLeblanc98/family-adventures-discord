@@ -1,4 +1,5 @@
 const { MongoClient } = require('mongodb');
+const { mongoUri } = require('../config.json');
 
 module.exports = {
     async init() {
