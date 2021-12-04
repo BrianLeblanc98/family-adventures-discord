@@ -34,7 +34,7 @@ module.exports = {
         } else if (raceName == 'medium-race') {
             return `<@${interaction.user.id}> lost a medium race betting ${bet} Corona.\nThey got destroyed in their ${carName}, bringing shame on the family.${ending}`
         } else if (raceName == 'uber-race') {
-            return `<@${interaction.user.id}> lost a medium race betting ${bet} Corona.\nThey got completely desolated in their ${carName}, a shame, but it was a tough race.${ending}`
+            return `<@${interaction.user.id}> lost an uber race betting ${bet} Corona.\nThey got completely desolated in their ${carName}, a shame, but it was a tough race.${ending}`
         }
     }
 }
