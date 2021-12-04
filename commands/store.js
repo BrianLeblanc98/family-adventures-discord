@@ -26,7 +26,7 @@ module.exports = {
 
         const embed = new MessageEmbed()
             .setTitle('Shop')
-            .addField({ name: 'Welcome to the shop, what do you want to buy?', value: ''})
+            .addField({ name: 'Welcome to the shop, what do you want to buy?', value: 'asdf'})
             .setTimestamp();
 
 		await interaction.reply({ content: "What do you want to shop for?", embeds: [embed], components: [row], ephemeral: true });
