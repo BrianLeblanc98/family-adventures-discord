@@ -18,18 +18,19 @@ module.exports = {
                 .setDescription(OPTION_DESCRIPTION)
                 .setRequired(true)),
 	async execute(interaction) {
+        await interaction.deferReply();
         let userData = await db.getUser(interaction.user.id.toString());
         let userInFamily = await db.inFamily(userData);
 
         if (!userInFamily){
-            await interaction.reply(replys.notInFamily(interaction));
+            await interaction.editReply(replys.notInFamily(interaction));
             return;
         }
 
         let userBoughtStarter = await db.hasStarter(userData);
 
         if (!userBoughtStarter) {
-            await interaction.reply(replys.notBoughtStarter(interaction));
+            await interaction.editReply(replys.notBoughtStarter(interaction));
             return;
         }
         
@@ -41,15 +42,15 @@ module.exports = {
             // Check if it's a positive integer
             bet = parseInt(betString);
         } else {
-            await interaction.reply(replys.invalidBet());
+            await interaction.editReply(replys.invalidBet());
             return;
         }
 
         if (bet < income[NAME].minBet) {
-            await interaction.reply(replys.underMinBet(income[NAME].minBet));
+            await interaction.editReply(replys.underMinBet(income[NAME].minBet));
             return;
         } else if (bet > userData.bal) {
-            await interaction.reply(replys.overBalBet(userData.bal, bet));
+            await interaction.editReply(replys.overBalBet(userData.bal, bet));
             return;
         } else if (bet > income[NAME].maxBet) {
             bet = income[NAME].maxBet;
@@ -57,18 +58,18 @@ module.exports = {
 
         let carData = await db.getCar(userData.current_car_id);
         let carName = db.getFullCarName(carData);
-
+        
         if (Math.random() < income[NAME].winPercent) {
             // WIN
             let winnings = Math.ceil(bet * income[NAME].payoutPercent);
             let newBal = await db.addBal(userData, winnings);
 
-            await interaction.reply(replys.basicRaceWin(NAME, interaction, carName, bet, winnings, newBal));
+            await interaction.editReply(replys.basicRaceWin(NAME, interaction, carName, bet, winnings, newBal));
         } else {
             // LOSE
             let newBal = await db.removeBal(userData, bet);
 
-            await interaction.reply(replys.basicRaceLose(NAME, interaction, carName, bet, newBal));
+            await interaction.editReply(replys.basicRaceLose(NAME, interaction, carName, bet, newBal));
         }
 	},
 };
