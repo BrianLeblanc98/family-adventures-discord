@@ -37,18 +37,20 @@ module.exports = {
         return userData.bought_starter;
     },
     async setBal(userData, newBal) {
-        let userQuery = { 'id': userData.id };
-        let update = { $set: { 'bal': newBal } };
-        await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(userQuery, update);
+        
     },
     async addBal(userData, bal) {
         let newBal = userData.bal + bal;
-        this.setBal(userData, newBal);
+        let userQuery = { 'id': userData.id };
+        let update = { $set: { 'bal': newBal } };
+        await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(userQuery, update);
         return newBal;
     },
     async removeBal(userData, bal) {
         let newBal = userData.bal - bal;
-        this.setBal(userData, newBal);
+        let userQuery = { 'id': userData.id };
+        let update = { $set: { 'bal': newBal } };
+        await mongoClient.db('familyAdventuresDiscordDb').collection('users').updateOne(userQuery, update);
         return newBal;
     },
     async getCar(id) {
