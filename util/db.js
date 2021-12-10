@@ -26,7 +26,7 @@ module.exports = {
         let usersData = await mongoClient.db('familyAdventuresDiscordDb').collection('users').find().sort({ 'bal': -1 }).toArray();
         return usersData;
     },
-	async inFamily(userData) {
+	async isInFamily(userData) {
         if (!userData) {
             return false;
         } else {

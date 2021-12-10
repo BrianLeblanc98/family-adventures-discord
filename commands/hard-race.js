@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const db = require('../util/db.js');
-const replys = require('../util/replys.js');
+const { getUser, isInFamily, hasStarter, getCar, getFullCarName, addBal, removeBal } = require('../util/db.js');
+const { notInFamily, notBoughtStarter, invalidBet, underMinBet, overBalBet, basicRaceWin, basicRaceLose } = require('../util/replys.js');
 const income = require('../util/income.json');
 
 const NAME = 'hard-race';
@@ -19,18 +19,18 @@ module.exports = {
                 .setRequired(true)),
 	async execute(interaction) {
         await interaction.deferReply();
-        let userData = await db.getUser(interaction.user.id.toString());
-        let userInFamily = await db.inFamily(userData);
+        let userData = await getUser(interaction.user.id.toString());
+        let userInFamily = await isInFamily(userData);
 
         if (!userInFamily){
-            await interaction.editReply(replys.notInFamily(interaction));
+            await interaction.editReply(notInFamily(interaction));
             return;
         }
 
-        let userBoughtStarter = await db.hasStarter(userData);
+        let userBoughtStarter = await hasStarter(userData);
 
         if (!userBoughtStarter) {
-            await interaction.editReply(replys.notBoughtStarter(interaction));
+            await interaction.editReply(notBoughtStarter(interaction));
             return;
         }
         
@@ -42,34 +42,34 @@ module.exports = {
             // Check if it's a positive integer
             bet = parseInt(betString);
         } else {
-            await interaction.editReply(replys.invalidBet());
+            await interaction.editReply(invalidBet());
             return;
         }
 
         if (bet < income[NAME].minBet) {
-            await interaction.editReply(replys.underMinBet(income[NAME].minBet));
+            await interaction.editReply(underMinBet(income[NAME].minBet));
             return;
         } else if (bet > userData.bal) {
-            await interaction.editReply(replys.overBalBet(userData.bal, bet));
+            await interaction.editReply(overBalBet(userData.bal, bet));
             return;
         } else if (bet > income[NAME].maxBet) {
             bet = income[NAME].maxBet;
         }
 
-        let carData = await db.getCar(userData.current_car_id);
-        let carName = db.getFullCarName(carData);
+        let carData = await getCar(userData.current_car_id);
+        let carName = getFullCarName(carData);
         
         if (Math.random() < income[NAME].winPercent) {
             // WIN
             let winnings = Math.ceil(bet * income[NAME].payoutPercent);
-            let newBal = await db.addBal(userData, winnings);
+            let newBal = await addBal(userData, winnings);
 
-            await interaction.editReply(replys.basicRaceWin(NAME, interaction, carName, bet, winnings, newBal));
+            await interaction.editReply(basicRaceWin(NAME, interaction, carName, bet, winnings, newBal));
         } else {
             // LOSE
-            let newBal = await db.removeBal(userData, bet);
+            let newBal = await removeBal(userData, bet);
 
-            await interaction.editReply(replys.basicRaceLose(NAME, interaction, carName, bet, newBal));
+            await interaction.editReply(basicRaceLose(NAME, interaction, carName, bet, newBal));
         }
 	},
 };

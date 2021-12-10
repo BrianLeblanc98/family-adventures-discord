@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
-const db = require('../util/db');
+const { getUsersSorted } = require('../util/db');
 
 const NAME = 'leaderboard';
 const DESCRIPTION = 'Show the family leaderboard.';
@@ -12,7 +12,7 @@ module.exports = {
 		.setName(NAME)
 		.setDescription(DESCRIPTION),
 	async execute(interaction) {
-        let usersData = await db.getUsersSorted();
+        let usersData = await getUsersSorted();
         
         let usernames = '';
         let bals = '';

@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const db = require('../util/db.js');
-const replys = require('../util/replys.js');
+const { getUser, isInFamily, addBal } = require('../util/db.js');
+const { notInFamily, workDone } = require('../util/replys.js');
 const income = require('../util/income.json');
 
 const NAME = 'work';
@@ -13,14 +13,15 @@ module.exports = {
 		.setName(NAME)
 		.setDescription(DESCRIPTION),
 	async execute(interaction) {
-        let userData = await db.getUser(interaction.user.id.toString());
-        let userInFamily = await db.inFamily(userData);
+        let userData = await getUser(interaction.user.id.toString());
+        let userInFamily = await isInFamily(userData);
+        
         if (!userInFamily) {
-            await interaction.reply(replys.notInFamily(interaction));
+            await interaction.reply(notInFamily(interaction));
             return;
         }
 
-        let newBal = await db.addBal(userData, income.work.workPay);
-		await interaction.reply(replys.workDone(income.work.workPay, newBal));
+        let newBal = await addBal(userData, income.work.workPay);
+		await interaction.reply(workDone(income.work.workPay, newBal));
 	},
 };

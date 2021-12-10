@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
-const db = require('../util/db.js');
-const replys = require('../util/replys.js');
+const { getUser, isInFamily, hasStarter, getCar, getFullCarName } = require('../util/db.js');
+const { notInFamily, notBoughtStarter } = require('../util/replys.js');
 
 const NAME = 'user';
 const DESCRIPTION = 'Show the family all your current data.';
@@ -13,23 +13,23 @@ module.exports = {
 		.setName(NAME)
 		.setDescription(DESCRIPTION),
 	async execute(interaction) {
-		let userData = await db.getUser(interaction.user.id.toString());
-        let userInFamily = await db.inFamily(userData);
+		let userData = await getUser(interaction.user.id.toString());
+        let userInFamily = await isInFamily(userData);
 
         if (!userInFamily){
-            await interaction.reply(replys.notInFamily(interaction));
+            await interaction.reply(notInFamily(interaction));
             return;
         }
 
-        let userBoughtStarter = await db.hasStarter(userData);
+        let userBoughtStarter = await hasStarter(userData);
 
         if (!userBoughtStarter) {
-            await interaction.reply(replys.notBoughtStarter(interaction));
+            await interaction.reply(notBoughtStarter(interaction));
             return;
         }
 
-        let carData = await db.getCar(userData.current_car_id);
-        let carName = db.getFullCarName(carData);
+        let carData = await getCar(userData.current_car_id);
+        let carName = getFullCarName(carData);
 
         let userDataFields = [
             { name: 'Current car', value: carName },

@@ -1,3 +1,5 @@
+const { MessageActionRow, MessageButton } = require('discord.js');
+
 module.exports = {
     showBal(bal) {
         return `Your current balance is ${bal} Corona`;
@@ -11,8 +13,31 @@ module.exports = {
     joinedFamily(interaction) {
         return `Welcome to the family <@${interaction.user.id}>! Choose your first car with /starter!`;
     },
+    hasBoughtStarter(interaction) {
+        return { content: `You've already chosen your starter <@${interaction.user.id}>! Don't think you can get another free car from the family!`, ephemeral: true };
+    },
     notBoughtStarter(interaciton) {
         return { content: `You haven't chosen your starter car <@${interaciton.user.id}>! Use /starter to get your first car from the family.`, ephemeral: true };
+    },
+    choosingStarter() {
+        const row = new MessageActionRow()
+            .addComponents(
+                new MessageButton()
+                    .setCustomId('325i')
+                    .setLabel('1990 BMW 325i')
+                    .setStyle('PRIMARY'),
+                new MessageButton()
+                    .setCustomId('Mustang')
+                    .setLabel('1994 Ford Mustang')
+                    .setStyle('PRIMARY'),
+                new MessageButton()
+                    .setCustomId('Civic Si')
+                    .setLabel('2002 Honda Civic Si')
+                    .setStyle('PRIMARY')
+                
+            );
+        
+        return { content: "Which car do you want to start with?", components: [row], ephemeral: true}
     },
     workDone(workPay, newBal) {
         return `Small family work done, added ${workPay} Corona to your balance. Current balance: ${newBal} Corona`;
@@ -60,5 +85,8 @@ module.exports = {
         } else if (raceName == 'uber-race') {
             return `<@${interaction.user.id}> lost an uber race betting ${bet} Corona.\nThey got completely desolated in their ${carName}, a small shame for the family, but the opponent was very strong.${ending}`;
         }
+    },
+    somethingWrong() {
+        return { content: `Something went wrong, please try again`, ephemeral: true };
     }
 }

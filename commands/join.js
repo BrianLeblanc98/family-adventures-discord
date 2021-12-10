@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const db = require('../util/db.js');
-const replys = require('../util/replys.js');
+const { getUser, isInFamily, addUser } = require('../util/db.js');
+const { inFamily, joinedFamily } = require('../util/replys.js');
 
 const NAME = 'join';
 const DESCRIPTION = 'Join the family, get your first car, and get ready to race!';
@@ -12,11 +12,11 @@ module.exports = {
 		.setName(NAME)
 		.setDescription(DESCRIPTION),
 	async execute(interaction) {
-        let userData = await db.getUser(interaction.user.id.toString());
-        let userInFamily = await db.inFamily(userData);
+        let userData = await getUser(interaction.user.id.toString());
+        let userInFamily = await isInFamily(userData);
 
         if (userInFamily){
-            await interaction.reply(replys.inFamily(interaction));
+            await interaction.reply(inFamily(interaction));
             return;
         }
 
@@ -31,7 +31,7 @@ module.exports = {
             "mods": []
         };
 
-        await db.addUser(newUser);
-        await interaction.reply(replys.joinedFamily(interaction));
+        await addUser(newUser);
+        await interaction.reply(joinedFamily(interaction));
 	},
 };

@@ -20,7 +20,7 @@ module.exports = {
 	async execute(interaction) {
         await interaction.deferReply();
         let userData = await db.getUser(interaction.user.id.toString());
-        let userInFamily = await db.inFamily(userData);
+        let userInFamily = await db.isInFamily(userData);
 
         if (!userInFamily){
             await interaction.editReply(replys.notInFamily(interaction));

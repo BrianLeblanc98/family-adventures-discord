@@ -1,7 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const db = require('../util/db.js');
-const replys = require('../util/replys.js');
-const income = require('../util/income.json');
+const { getUser, isInFamily, addBal, removeBal } = require('../util/db.js');
+const { notInFamily, underMinBet, coinflip } = require('../util/replys.js');
 
 const NAME = 'coinflip';
 const DESCRIPTION = 'DOUBLE OR NOTHING FOR THE FAMILY!!!';
@@ -13,24 +12,24 @@ module.exports = {
 		.setName(NAME)
 		.setDescription(DESCRIPTION),
 	async execute(interaction) {
-		let userData = await db.getUser(interaction.user.id.toString());
-        let userInFamily = await db.inFamily(userData);
+		let userData = await getUser(interaction.user.id.toString());
+        let userInFamily = await isInFamily(userData);
         if (!userInFamily) {
-            await interaction.reply(replys.notInFamily(interaction));
+            await interaction.reply(notInFamily(interaction));
             return;
         }
 
         if (userData.bal <= 0) {
-            await interaction.reply(replys.underMinBet(1));
+            await interaction.reply(underMinBet(1));
             return;
         }
 
         if (Math.random() < 0.5) {
-            let newBal = await db.addBal(userData, userData.bal);
-            await interaction.reply(replys.coinflip(true, interaction, newBal));
+            let newBal = await addBal(userData, userData.bal);
+            await interaction.reply(coinflip(true, interaction, newBal));
         } else {
-            let newBal = await db.removeBal(userData, userData.bal);
-            await interaction.reply(replys.coinflip(false, interaction, newBal));
+            let newBal = await removeBal(userData, userData.bal);
+            await interaction.reply(coinflip(false, interaction, newBal));
         }
 	},
 };
